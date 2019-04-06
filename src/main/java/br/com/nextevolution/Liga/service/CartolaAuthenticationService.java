@@ -1,34 +1,23 @@
-package br.com.nextevolution.Liga.autenticacao;
+package br.com.nextevolution.Liga.service;
 
+import org.springframework.web.client.RestTemplate;
+
+import br.com.nextevolution.Liga.autenticacao.Autenticacao;
+import br.com.nextevolution.Liga.autenticacao.Token;
 import br.com.nextevolution.Liga.model.GloboPayload;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-
-public class CartolaAuthentication {
-    private String token;
-
-    public CartolaAuthentication(String email,String password) {
-
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("https://login.globo.com/api/authentication");
-        GloboPayload payload = new GloboPayload(email,password,438);
+public class CartolaAuthenticationService {
+    private Token token;
+    
+    public CartolaAuthenticationService(String email,String password) {
+    	GloboPayload payload = new GloboPayload(email,password,438);
         Autenticacao auth = new Autenticacao(payload);
-
-        Entity entity = Entity.json(auth);
-
-        Response response = target.request().header("Content-type", "application/json")
-                .accept("Accept","text/plain").post(entity);
-        Token token = response.readEntity(Token.class);
-        //System.out.println(response.readEntity(String.class));
-        this.token = token.getGlbId();
+    	
+        RestTemplate client = new RestTemplate();
+    	this.token = client.postForObject("https://login.globo.com/api/authentication", auth, Token.class);
     }
 
-    public String getToken() {
-        System.out.println(token);
+    public Token getToken() {
         return token;
     }
 }
