@@ -2,7 +2,7 @@ package br.com.nextevolution.Liga.model;
 
 import java.io.Serializable;
 
-public class Rodada {
+public class Mercado {
     private int rodada_atual;
     private int status_mercado;
     private int esquema_default_id;
