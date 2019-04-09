@@ -1,46 +1,58 @@
-package br.com.nextevolution.Liga;
+package br.com.nextevolution.Liga.teste;
 
-import br.com.nextevolution.Liga.autenticacao.CartolaAuthentication;
-import br.com.nextevolution.Liga.model.Rodada;
-import org.junit.Assert;
-import org.junit.Test;
+import java.io.IOException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import java.io.IOException;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
+
+import br.com.nextevolution.Liga.autenticacao.Token;
+import br.com.nextevolution.Liga.model.Mercado;
+import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
+import br.com.nextevolution.Liga.service.Consulta;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ClienteTeste {
-
+	
+	
+	
+	
     @Test
-    public void testeConexaoFunciona(){
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("https://api.cartolafc.globo.com");
-        target.path("/rodadas");
-        String response = target.request().get(String.class);
-        Assert.assertTrue(response.contains("rodada"));
-    }
-
-    @Test
-    public void RetornaRodada() throws IOException {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("https://api.cartolafc.globo.com");
-        target.path("/rodadas");
-        Rodada rodada = target.request().get(Rodada.class);
-        Assert.assertTrue(rodada.getRodada_atual()==38);
+    public void TesteStatusMercado() throws IOException {
+        //Client client = ClientBuilder.newClient();
+        //WebTarget target = client.target("https://api.cartolafc.globo.com");
+        //target.path("/rodadas");
+        //Rodada rodada = target.request().get(Rodada.class);
+    	//RestTemplate restTemplate = new RestTemplate();
+    	//Mercado mercado = new Consulta().statusMercado(restTemplate,"https://api.cartolafc.globo.com/mercado/status");
+    	Mercado mercado = new Consulta().statusMercado();
+    	
+        Assert.assertTrue(mercado.getRodada_atual()==1);
     }
 
     @Test
     public void testeAutenticacao() {
-        CartolaAuthentication auth = new CartolaAuthentication("lvmp7@hotmail.com","treyce2504");
-        System.out.println(auth.getToken());
+        CartolaAuthenticationService auth = new CartolaAuthenticationService("lvmp7@hotmail.com","treyce2504");
+        Token token = auth.getToken();
+        System.out.println(token.getGlbId());
+        Assert.assertTrue(token.getId().equals("Authenticated"));
     }
 
     @Test
     public void BuscaLiga(){
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("https://api.cartolafc.globo.com");
-        CartolaAuthentication auth = new CartolaAuthentication("lvmp7@hotmail.com","treyce2504");
+        CartolaAuthenticationService auth = new CartolaAuthenticationService("lvmp7@hotmail.com","treyce2504");
 
         target.path("/"+auth.getToken()+"/liga/masters-br");
         String response = target.request().get(String.class);
@@ -50,7 +62,7 @@ public class ClienteTeste {
     public void RetornaTime(){
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("https://api.cartolafc.globo.com");
-        CartolaAuthentication auth = new CartolaAuthentication("lvmp7@hotmail.com","treyce2504");
+        CartolaAuthenticationService auth = new CartolaAuthenticationService("lvmp7@hotmail.com","treyce2504");
 
         target.path("/"+auth.getToken()+"/time");
 
