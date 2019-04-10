@@ -9,11 +9,8 @@ import javax.ws.rs.client.WebTarget;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import br.com.nextevolution.Liga.autenticacao.Token;
 import br.com.nextevolution.Liga.model.Mercado;
