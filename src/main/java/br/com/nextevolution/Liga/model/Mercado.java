@@ -1,6 +1,6 @@
 package br.com.nextevolution.Liga.model;
 
-import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAttribute;
 
 public class Mercado {
     private int rodada_atual;
@@ -22,6 +22,8 @@ public class Mercado {
     private boolean mercado_pos_rodada;
     private String aviso;
     private String aviso_url;
+    @XmlAttribute(name="limites_competicao")
+    private LimitesCompeticao limitesCompeticao;
 
     public int getRodada_atual() {
         return rodada_atual;
@@ -174,4 +176,12 @@ public class Mercado {
     public void setAviso_url(String aviso_url) {
         this.aviso_url = aviso_url;
     }
+
+	public LimitesCompeticao getLimitesCompeticao() {
+		return limitesCompeticao;
+	}
+
+	public void setLimites_Competicao(LimitesCompeticao limitescompeticao) {
+		this.limitesCompeticao = limitescompeticao;
+	}
 }
