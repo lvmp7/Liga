@@ -23,9 +23,6 @@ public class ConsultaService {
 	private Client client;
 	private WebTarget target;
 	
-	@Autowired
-	private CartolaAuthenticationService auth;
-	
 	public ConsultaService() {
 		client = ClientBuilder.newClient();
 		target = client.target("https://api.cartolafc.globo.com");
@@ -35,16 +32,13 @@ public class ConsultaService {
 		return target.path(targetpath).request().get(Mercado.class);
 	}
 	
-	public void consultaLiga(String targetpath) {
-		
-		System.out.println(target.path(targetpath).request().get(String.class));
+	public void consultaLiga(Token token, String targetpath) {
+		System.out.println(target.path(targetpath).request().header("X-GLB-Token", token.getGlbId()).get(String.class) );
 		//return target.path(targetpath).request().get(Liga.class);
 	}
 	
-	public void consultaLiga(Token token, String targetpath) {
-		String novopath = "/auth"+targetpath;
-		System.out.println(target.path(novopath).request().header("X-GLB-Token", token.getGlbId()).get(String.class) );
-		//return target.path(targetpath).request().get(Liga.class);
+	public void consultaTime(Token token, String targetpath) {
+		System.out.println(target.path(targetpath).request().header("X-GLB-Token", token.getGlbId()).get(String.class) );
 	}
 	
 	

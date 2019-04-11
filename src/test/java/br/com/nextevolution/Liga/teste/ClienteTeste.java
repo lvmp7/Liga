@@ -37,17 +37,15 @@ public class ClienteTeste {
         Token token = auth.getToken("lvmp7@hotmail.com","treyce2504");
         
     	ConsultaService consulta = new ConsultaService();
-    	consulta.consultaLiga(token, "/liga/masters-br");
+    	consulta.consultaLiga(token, "/auth/liga/masters-br");
     }
     @Test
-    public void RetornaTime(){
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("https://api.cartolafc.globo.com");
+    public void RetornaTime(){       
         CartolaAuthenticationService auth = new CartolaAuthenticationService();
-        target.path("/"+auth.getToken("lvmp7@hotmail.com","treyce2504").getGlbId()+"/time");
+        Token token = auth.getToken("lvmp7@hotmail.com","treyce2504");
+        ConsultaService consulta = new ConsultaService();
+    	consulta.consultaTime(token, "/auth/time");
 
-        System.out.println(target);
-        String response = target.request().get(String.class);
     }
 
 }
