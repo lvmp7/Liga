@@ -1,9 +1,5 @@
 package br.com.nextevolution.Liga.teste;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +7,6 @@ import br.com.nextevolution.Liga.autenticacao.Token;
 import br.com.nextevolution.Liga.model.Mercado;
 import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
 import br.com.nextevolution.Liga.service.ConsultaService;
-
 
 public class ClienteTeste {	
 	
@@ -47,6 +42,14 @@ public class ClienteTeste {
     	consulta.consultaTime(token, "/auth/time");
 
     }
+    @Test
+    public void RetornaLigasDoUsuario() {
+    	CartolaAuthenticationService auth = new CartolaAuthenticationService();
+        Token token = auth.getToken("lvmp7@hotmail.com","treyce2504");
+        ConsultaService consulta = new ConsultaService();
+    	consulta.ligasDoUsuario(token, "/auth/ligas");
+    }
+    
 
 }
 
