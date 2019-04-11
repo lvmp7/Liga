@@ -33,17 +33,11 @@ public class ClienteTeste {
 
     @Test
     public void BuscaLiga(){
-    	Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("https://api.cartolafc.globo.com");
-        CartolaAuthenticationService auth = new CartolaAuthenticationService();
+    	CartolaAuthenticationService auth = new CartolaAuthenticationService();
         Token token = auth.getToken("lvmp7@hotmail.com","treyce2504");
-        System.out.println(token.getId());
-        System.out.println(token.getGlbId());
-        System.out.println(token.getUserMessage());
-        target.path("/liga/masters-br");
-        String response = target.request().get(String.class);
-        System.out.println(response);
         
+    	ConsultaService consulta = new ConsultaService();
+    	consulta.consultaLiga(token, "/liga/masters-br");
     }
     @Test
     public void RetornaTime(){

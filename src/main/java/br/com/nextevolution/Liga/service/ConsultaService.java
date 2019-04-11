@@ -6,7 +6,10 @@ import javax.ws.rs.client.WebTarget;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
@@ -33,14 +36,14 @@ public class ConsultaService {
 	}
 	
 	public void consultaLiga(String targetpath) {
+		
 		System.out.println(target.path(targetpath).request().get(String.class));
 		//return target.path(targetpath).request().get(Liga.class);
 	}
 	
 	public void consultaLiga(Token token, String targetpath) {
-		RestTemplate restTemplate = new RestTemplate();		
-		restTemplate.getForEntity("https://api.cartolafc.globo.com/"+token.getGlbId()+"/"+targetpath, String.class);
-		System.out.println(target.path(targetpath).request().get(String.class));
+		String novopath = "/auth"+targetpath;
+		System.out.println(target.path(novopath).request().header("X-GLB-Token", token.getGlbId()).get(String.class) );
 		//return target.path(targetpath).request().get(Liga.class);
 	}
 	
