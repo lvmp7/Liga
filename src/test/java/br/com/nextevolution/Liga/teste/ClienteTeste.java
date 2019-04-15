@@ -1,10 +1,14 @@
 package br.com.nextevolution.Liga.teste;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.nextevolution.Liga.autenticacao.Token;
+import br.com.nextevolution.Liga.model.Liga;
 import br.com.nextevolution.Liga.model.Mercado;
+import br.com.nextevolution.Liga.parser.Ligas;
 import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
 import br.com.nextevolution.Liga.service.ConsultaService;
 
@@ -47,7 +51,15 @@ public class ClienteTeste {
     	CartolaAuthenticationService auth = new CartolaAuthenticationService();
         Token token = auth.getToken("lvmp7@hotmail.com","treyce2504");
         ConsultaService consulta = new ConsultaService();
-    	consulta.ligasDoUsuario(token, "/auth/ligas");
+    	Ligas campeonatos = consulta.ligasDoUsuario(token, "/auth/ligas");
+		List<Liga> ligas = campeonatos.getLigas();
+    	
+		System.out.println("Size: "+ ligas.size());
+    	
+    	for (Liga liga : ligas) {
+			System.out.println(liga.getNome());
+    		System.out.println(liga.getUrl_flamula_png());
+		}
     }
     
 
