@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="htttp://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Masters BR</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Masters BR</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}"/>	
+	</head>
 	
-</head>
-
-<body>
-		<div class="bgimg-1 container-fluid" >
+	<body>
+		<div id="bg">
+			<img alt="" src="../static/img/background.jpg" th:src="@{img/background.jpg}">
+		</div>
+	
+		<div class="container" >
 			<header class="row justify-content-md-center">
 				<!-- Escudo -->
 				<div class="col-2">
@@ -40,20 +43,31 @@
 				
 			</header>
 		
-		
-			<div class="panel">
-				Teste
+			<div class="row">
+				<div class="col">
+					<div class="jumbotron">
+						
+							 Teste
+						
+					</div>
+				</div>
+				<div class="col">
+					<div class="jumbotron ">
+						
+							 Teste
+						
+					</div>
+				</div>	
 			</div>
 
 
 			
-			<footer class="fixed-bottom ">© 2016 by Masters BR</footer>	
+			<footer class="fixed-bottom text-center">© 2016 by Masters BR</footer>	
 		</div>
-		
-		
 		<!-- Script para o menu -->
 		<script src="../static/jquery/jquery.min.js"></script>
 		<script  src="../static/js/bootstrap.min.js"></script>
-	
+		
 	</body>
+	
 </html>

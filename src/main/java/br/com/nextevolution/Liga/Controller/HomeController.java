@@ -20,9 +20,9 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home(Model model) {
-		consulta.consultaLiga(auth.getToken("lvmp7@hotmail.com","treyce2504"), "/liga/masters-br");
+		//consulta.consultaLiga(auth.getToken("lvmp7@hotmail.com","treyce2504"), "/liga/masters-br");
 		
-		model.addAttribute("mercado", new ConsultaService().consultaMercado("/mercado/status"));
-		return "home";
+		//model.addAttribute("mercado", new ConsultaService().consultaMercado("/mercado/status"));
+		return "index";
 	}
 }
