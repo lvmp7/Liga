@@ -1,10 +1,13 @@
 package br.com.nextevolution.Liga.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Mercado {
     private int rodada_atual;
-    private int status_mercado;
+    @JsonProperty("status_mercado")
+    private int statusmercado;
     private int esquema_default_id;
     private int cartoleta_inicial;
     private int max_ligas_free;
@@ -20,9 +23,11 @@ public class Mercado {
     private int times_escalados;
     Fechamento fechamento;
     private boolean mercado_pos_rodada;
-    private String aviso;
-    private String aviso_url;
-    @XmlAttribute(name="limites_competicao")
+//    private String aviso;
+//    private String aviso_url;
+    //@XmlAttribute(name="limites_competicao")
+    
+    @JsonProperty("limites_competicao")
     private LimitesCompeticao limitesCompeticao;
 
     public int getRodada_atual() {
@@ -34,11 +39,11 @@ public class Mercado {
     }
 
     public int getStatus_mercado() {
-        return status_mercado;
+        return statusmercado;
     }
 
-    public void setStatus_mercado(int status_mercado) {
-        this.status_mercado = status_mercado;
+    public void setStatus_mercado(int statusmercado) {
+        this.statusmercado = statusmercado;
     }
 
     public int getEsquema_default_id() {
@@ -160,7 +165,7 @@ public class Mercado {
     public void setMercado_pos_rodada(boolean mercado_pos_rodada) {
         this.mercado_pos_rodada = mercado_pos_rodada;
     }
-
+/*
     public String getAviso() {
         return aviso;
     }
@@ -176,7 +181,7 @@ public class Mercado {
     public void setAviso_url(String aviso_url) {
         this.aviso_url = aviso_url;
     }
-
+*/
 	public LimitesCompeticao getLimitesCompeticao() {
 		return limitesCompeticao;
 	}

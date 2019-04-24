@@ -7,6 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
 import br.com.nextevolution.Liga.service.ConsultaService;
 
@@ -21,8 +25,14 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 		//consulta.consultaLiga(auth.getToken("lvmp7@hotmail.com","treyce2504"), "/liga/masters-br");
+		model.addAttribute("mercado", new ConsultaService().consultaMercado("/mercado/status"));
+		 
 		
-		//model.addAttribute("mercado", new ConsultaService().consultaMercado("/mercado/status"));
 		return "index";
+	}
+	
+	@GetMapping("/regulamento")
+	public String regulamento() {
+		return "regulamento";
 	}
 }

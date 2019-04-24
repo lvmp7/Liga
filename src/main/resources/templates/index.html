@@ -4,13 +4,14 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Masters BR</title>
-		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
-		<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}"/>	
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}"/>	
 	</head>
+	<div th:replace="fragments/head"></div>
 	
 	<body>
 		<div id="bg">
-			<img alt="" src="../static/img/background.jpg" th:src="@{img/background.jpg}">
+			<img alt="" th:src="@{img/background.jpg}">
 		</div>
 	
 		<div class="container" >
@@ -26,7 +27,7 @@
 						<div class="collapse navbar-collapse" id="navbarNavDropDown">
 							<ul class="nav nav-tabs">
 							
-								<li class="nav-item"> <a class="nav-link" href="#">Home</a> </li>
+								<li class="nav-item"> <a class="nav-link" href="#" th:href="@{/}">Home</a> </li>
 								<li class="nav-item dropdown">
 								    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Campeonatos</a>
 								    <div class="dropdown-menu" aria-labelledy="navbarDropdownnMenuLink">
@@ -35,7 +36,7 @@
 								      <a class="dropdown-item" href="#">Something else here</a>
 								    </div>
 							    </li>
-							    <li class="nav-item"> <a class="nav-link" href="#">Regulamento</a> </li>
+							    <li class="nav-item"> <a class="nav-link" href="#" th:href="@{/regulamento}">Regulamento</a> </li>
 							</ul>
 						</div>
 					</nav>
@@ -65,8 +66,8 @@
 			<footer class="fixed-bottom text-center">© 2016 by Masters BR</footer>	
 		</div>
 		<!-- Script para o menu -->
-		<script src="../static/jquery/jquery.min.js"></script>
-		<script  src="../static/js/bootstrap.min.js"></script>
+		<script src="../static/jquery/jquery.min.js" th:src="@{jquery/jquery.min.js}"></script>
+		<script src="../static/js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
 		
 	</body>
 	

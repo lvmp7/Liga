@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html xmlns="htttp://www.thymeleaf.org">
-	<div th:replace="fragments/head"/>
-	<body>
-		
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Masters BR</title>
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}"/>	
+	</head>
+<body>
+	<div th:replace="fragments/background"></div>
+
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+
+		<div class="row">
+			<div class="col">
+				<div class="jumbotron">
+					<h3 >Este regulamento será a ferramenta adequada para dirimir eventuais divergências na LIGA que faz parte do CARTOLA FC.</h3>
+   					<h3 >Ninguém poderá alegar desconhecimento do Regulamento, seja qual for a situação.</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="jumbotron ">Teste</div>
+			</div>
+	
+		</div>
+
 		<div th:replace="fragments/footer ::footer"></div>
-	</body>
+	</div>
+</body>
 </html>
