@@ -1,6 +1,16 @@
 .jumbotron{
-	background: rgba(0,0,0,0.3);
+	opacity: 0.9;
 	padding: 10px;
+	background-color: black;
+	color: white;
+}
+
+#img-jumbotron{
+	opacity: 1.0 !important;
+}
+
+#img-jumbotron{
+	opacity: 0.9;
 }
 
 #bg {
@@ -20,5 +30,5 @@
 	margin:auto;
 	min-width:50%;
 	min-height:50%;
-	opacity: 0.3;
+	
 }

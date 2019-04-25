@@ -7,10 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
 import br.com.nextevolution.Liga.service.ConsultaService;
 
@@ -32,7 +28,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/regulamento")
-	public String regulamento() {
+	public String regulamento(Model model) {
 		return "regulamento";
 	}
 }
