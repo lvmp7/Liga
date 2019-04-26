@@ -1,26 +1,15 @@
 package br.com.nextevolution.Liga.model;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
 
-public class Fechamento implements Serializable {
+@Entity
+public class Fechamento{
     private int dia;
     private int mes;
     private int ano;
     private int hora;
     private int minuto;
     private long timestamp;
-
-    public Fechamento() {
-    }
-
-    public Fechamento(int dia, int mes, int ano, int hora, int minuto, long timestamp) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.hora = hora;
-        this.minuto = minuto;
-        this.timestamp = timestamp;
-    }
 
     public int getDia() {
         return dia;
