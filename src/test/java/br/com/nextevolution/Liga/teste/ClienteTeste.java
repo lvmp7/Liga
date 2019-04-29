@@ -8,20 +8,17 @@ import org.junit.Test;
 import br.com.nextevolution.Liga.autenticacao.Token;
 import br.com.nextevolution.Liga.model.Liga;
 import br.com.nextevolution.Liga.model.Mercado;
+import br.com.nextevolution.Liga.model.Rodada;
 import br.com.nextevolution.Liga.parser.Ligas;
 import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
 import br.com.nextevolution.Liga.service.ConsultaService;
+import br.com.nextevolution.Liga.service.MercadoService;
+import br.com.nextevolution.Liga.service.RodadaService;
 
 public class ClienteTeste {	
 	
-	@Test
-    public void TesteStatusMercado(){
-		ConsultaService consulta = new ConsultaService();
-    	//Mercado mercado = consulta.statusMercado();
-    	Mercado mercado = consulta.consultaMercado("/mercado/status");
-        Assert.assertTrue(mercado.getRodada_atual()==1);
-    }
-
+	
+	/*
     @Test
     public void testeAutenticacao() {
         CartolaAuthenticationService auth = new CartolaAuthenticationService();
@@ -60,6 +57,17 @@ public class ClienteTeste {
 			System.out.println(liga.getNome());
     		System.out.println(liga.getUrl_flamula_png());
 		}
+    }
+    */
+    @Test
+    public void consultaRodada() {
+    	RodadaService rodadaService = new RodadaService();
+    	rodadaService.atualizaRodada();
+    }
+    @Test
+    public void TesteStatusMercado(){
+		MercadoService mercadoService = new MercadoService();
+    	mercadoService.status();
     }
     
 

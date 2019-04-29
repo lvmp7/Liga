@@ -1,6 +1,8 @@
 package br.com.nextevolution.Liga.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Fechamento{
@@ -9,6 +11,8 @@ public class Fechamento{
     private int ano;
     private int hora;
     private int minuto;
+    @Id
+    @PrimaryKeyJoinColumn(name="mercado_fechamento")
     private long timestamp;
 
     public int getDia() {

@@ -2,6 +2,8 @@ package br.com.nextevolution.Liga.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +21,8 @@ public class Mercado {
     private boolean reativar;
     @JsonProperty("times_escalados")
     private int timesEscalados;
+    @JoinColumn(unique=true,updatable=true , name="mercado_fechamento")
+    @OneToOne
     Fechamento fechamento;
     @JsonProperty("mercado_pos_rodada")
     private boolean posRodada;

@@ -16,12 +16,13 @@ public class Schedule {
 	private Client client;
 	private WebTarget target;
 	
+	
 	public Schedule() {
 		client = ClientBuilder.newClient();
 		target = client.target("https://api.cartolafc.globo.com");
 	}
 	
-	public void consultaMercado(String targetpath) {
-		mercadoService.save( target.path(targetpath).request().get(Mercado.class) );
-	}
+	
+	
+	
 }
