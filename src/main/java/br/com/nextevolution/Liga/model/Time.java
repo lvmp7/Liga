@@ -9,7 +9,7 @@ public class Time {
     private List<Posicao> posicoes;
     private List<Status> status;
     private int capitao_id;
-    private Cartola time;
+    private Cartoleiro time;
     private double patrimonio;
     private int esquema_id;
     private double pontos;
@@ -52,10 +52,10 @@ public class Time {
 	public void setCapitao_id(int capitao_id) {
 		this.capitao_id = capitao_id;
 	}
-	public Cartola getTime() {
+	public Cartoleiro getTime() {
 		return time;
 	}
-	public void setTime(Cartola time) {
+	public void setTime(Cartoleiro time) {
 		this.time = time;
 	}
 	public double getPatrimonio() {

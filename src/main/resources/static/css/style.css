@@ -8,9 +8,22 @@
 	color: white;
 }
 
-#img-jumbotron{
-	opacity: 1.0 !important;
+.carrossel-text{
+	color: #8585e0;
 }
+
+
+.jumbotron img{
+	padding-left: 100px;
+	width: 60%;
+	height: auto;
+	opacity: 1.0!important;
+	-webkit-filter: drop-shadow(1px 1px 0 white)
+                  drop-shadow(-1px -1px 0 white);
+  filter: drop-shadow(1px 1px 0 white) 
+          drop-shadow(-1px -1px 0 white);
+}
+
 
 #bg {
 	position:fixed;
@@ -28,6 +41,9 @@
 	bottom:0;
 	margin:auto;
 	min-width:50%;
-	min-height:50%;
-	
+	min-height:50%;	
+}
+
+.h5, h5{
+	color: blue;
 }

@@ -67,7 +67,7 @@ public class ClienteTeste {
     @Test
     public void TesteStatusMercado(){
 		MercadoService mercadoService = new MercadoService();
-    	mercadoService.status();
+    	mercadoService.getMercado(2);
     }
     
 

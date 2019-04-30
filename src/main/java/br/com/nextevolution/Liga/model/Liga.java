@@ -1,11 +1,26 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Liga {
+public class Liga {	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int liga_id;
 	private int time_dono_id;
 	private int clube_id;
@@ -14,26 +29,16 @@ public class Liga {
     private String slug;
     private String tipo;
     private boolean mata_mata;
-    private boolean editorial;
-    private boolean patrocinador;
-    private String criacao;
-    private int tipo_flamula;
-    private int tipo_estampa_flamula;
-    private int tipo_adorno_flamula;
-    private String cor_primaria_estampa_flamula;
-    private String cor_secundaria_estampa_flamula;
-    private String cor_borda_flamula;
-    private String cor_fundo_flamula;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
+    private Calendar criacao;
     private String url_flamula_svg;
     private String url_flamula_png;
-    private String tipo_trofeu;
-    private String cor_trofeu;
     private String url_trofeu_svg;
     private String url_trofeu_png;
     private int inicio_rodada;
     private int fim_rodada;
     private int quantidade_times;
-    private boolean sorteada;
     private String imagem;
     private String mes_ranking_num;
     private String mes_variacao_num;
@@ -42,9 +47,8 @@ public class Liga {
     private String capitao_ranking_num;
     private String capitao_variacao_num;
     private String total_times_liga;
-    private String vagas_restantes;
-    private int total_amigos_na_liga;
-    private List<Cartola> times;
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
+    private List<Cartoleiro> times;
     
 	public int getLiga_id() {
 		return liga_id;
@@ -94,66 +98,6 @@ public class Liga {
 	public void setMata_mata(boolean mata_mata) {
 		this.mata_mata = mata_mata;
 	}
-	public boolean isEditorial() {
-		return editorial;
-	}
-	public void setEditorial(boolean editorial) {
-		this.editorial = editorial;
-	}
-	public boolean isPatrocinador() {
-		return patrocinador;
-	}
-	public void setPatrocinador(boolean patrocinador) {
-		this.patrocinador = patrocinador;
-	}
-	public String getCriacao() {
-		return criacao;
-	}
-	public void setCriacao(String criacao) {
-		this.criacao = criacao;
-	}
-	public int getTipo_flamula() {
-		return tipo_flamula;
-	}
-	public void setTipo_flamula(int tipo_flamula) {
-		this.tipo_flamula = tipo_flamula;
-	}
-	public int getTipo_estampa_flamula() {
-		return tipo_estampa_flamula;
-	}
-	public void setTipo_estampa_flamula(int tipo_estampa_flamula) {
-		this.tipo_estampa_flamula = tipo_estampa_flamula;
-	}
-	public int getTipo_adorno_flamula() {
-		return tipo_adorno_flamula;
-	}
-	public void setTipo_adorno_flamula(int tipo_adorno_flamula) {
-		this.tipo_adorno_flamula = tipo_adorno_flamula;
-	}
-	public String getCor_primaria_estampa_flamula() {
-		return cor_primaria_estampa_flamula;
-	}
-	public void setCor_primaria_estampa_flamula(String cor_primaria_estampa_flamula) {
-		this.cor_primaria_estampa_flamula = cor_primaria_estampa_flamula;
-	}
-	public String getCor_secundaria_estampa_flamula() {
-		return cor_secundaria_estampa_flamula;
-	}
-	public void setCor_secundaria_estampa_flamula(String cor_secundaria_estampa_flamula) {
-		this.cor_secundaria_estampa_flamula = cor_secundaria_estampa_flamula;
-	}
-	public String getCor_borda_flamula() {
-		return cor_borda_flamula;
-	}
-	public void setCor_borda_flamula(String cor_borda_flamula) {
-		this.cor_borda_flamula = cor_borda_flamula;
-	}
-	public String getCor_fundo_flamula() {
-		return cor_fundo_flamula;
-	}
-	public void setCor_fundo_flamula(String cor_fundo_flamula) {
-		this.cor_fundo_flamula = cor_fundo_flamula;
-	}
 	public String getUrl_flamula_svg() {
 		return url_flamula_svg;
 	}
@@ -165,18 +109,6 @@ public class Liga {
 	}
 	public void setUrl_flamula_png(String url_flamula_png) {
 		this.url_flamula_png = url_flamula_png;
-	}
-	public String getTipo_trofeu() {
-		return tipo_trofeu;
-	}
-	public void setTipo_trofeu(String tipo_trofeu) {
-		this.tipo_trofeu = tipo_trofeu;
-	}
-	public String getCor_trofeu() {
-		return cor_trofeu;
-	}
-	public void setCor_trofeu(String cor_trofeu) {
-		this.cor_trofeu = cor_trofeu;
 	}
 	public String getUrl_trofeu_svg() {
 		return url_trofeu_svg;
@@ -207,12 +139,6 @@ public class Liga {
 	}
 	public void setQuantidade_times(int quantidade_times) {
 		this.quantidade_times = quantidade_times;
-	}
-	public boolean isSorteada() {
-		return sorteada;
-	}
-	public void setSorteada(boolean sorteada) {
-		this.sorteada = sorteada;
 	}
 	public String getImagem() {
 		return imagem;
@@ -262,23 +188,10 @@ public class Liga {
 	public void setTotal_times_liga(String total_times_liga) {
 		this.total_times_liga = total_times_liga;
 	}
-	public String getVagas_restantes() {
-		return vagas_restantes;
-	}
-	public void setVagas_restantes(String vagas_restantes) {
-		this.vagas_restantes = vagas_restantes;
-	}
-	public int getTotal_amigos_na_liga() {
-		return total_amigos_na_liga;
-	}
-	public void setTotal_amigos_na_liga(int total_amigos_na_liga) {
-		this.total_amigos_na_liga = total_amigos_na_liga;
-	}
-	public List<Cartola> getTimes() {
+	public List<Cartoleiro> getTimes() {
 		return times;
 	}
-	public void setTimes(List<Cartola> times) {
+	public void setTimes(List<Cartoleiro> times) {
 		this.times = times;
 	}
-    
 }
