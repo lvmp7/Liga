@@ -21,9 +21,8 @@ public class Mercado {
     private boolean reativar;
     @JsonProperty("times_escalados")
     private int timesEscalados;
-    @JoinColumn(unique=true,updatable=true , name="mercado_fechamento")
-    @OneToOne
-    Fechamento fechamento;
+    @JsonProperty("timestamp")
+    long fechamento;
     @JsonProperty("mercado_pos_rodada")
     private boolean posRodada;
 
@@ -74,7 +73,7 @@ public class Mercado {
     public void setTimes_escalados(int timesEscalados) {
         this.timesEscalados = timesEscalados;
     }
-
+/*
     public Fechamento getFechamento() {
         return fechamento;
     }
@@ -82,6 +81,15 @@ public class Mercado {
     public void setFechamento(Fechamento fechamento) {
         this.fechamento = fechamento;
     }
+  */
+    public long getFechamento() {
+        return fechamento;
+    }
+
+    public void setFechamento(long fechamento) {
+        this.fechamento = fechamento;
+    }
+    
 
     public boolean isMercado_pos_rodada() {
         return posRodada;

@@ -1,5 +1,10 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Liga {
 	private int liga_id;
 	private int time_dono_id;
@@ -39,6 +44,7 @@ public class Liga {
     private String total_times_liga;
     private String vagas_restantes;
     private int total_amigos_na_liga;
+    private List<Cartola> times;
     
 	public int getLiga_id() {
 		return liga_id;
@@ -267,6 +273,12 @@ public class Liga {
 	}
 	public void setTotal_amigos_na_liga(int total_amigos_na_liga) {
 		this.total_amigos_na_liga = total_amigos_na_liga;
+	}
+	public List<Cartola> getTimes() {
+		return times;
+	}
+	public void setTimes(List<Cartola> times) {
+		this.times = times;
 	}
     
 }

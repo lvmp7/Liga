@@ -1,28 +1,27 @@
 package br.com.nextevolution.Liga.service;
 
-import java.util.List;
+import java.net.UnknownHostException;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import org.springframework.stereotype.Service;
 
-import br.com.nextevolution.Liga.model.Cartola;
+import br.com.nextevolution.Liga.Consulta;
+import br.com.nextevolution.Liga.autenticacao.Token;
 import br.com.nextevolution.Liga.model.Liga;
-import br.com.nextevolution.Liga.model.Time;
 
-public class LigaService {
-	@XmlAttribute(name="convites_enviados")
-	private List<Cartola> convitesEnviados;
-	private List<Time> times;
+@Service
+public class LigaService extends Consulta{
 	
-	private Liga liga;
-	private boolean membro;
-	private int pagina;
-	private List <Cartola> pedidos;
-	@XmlAttribute(name="time-dono")
-	private Time timeDono;
-	@XmlAttribute(name="time_usuario")
-	private Time timeusuario;
-	
-	
+	public Liga getLiga(Token token, String nomeLiga){
+		Liga liga = null;
+		try {
+			return liga = consulta(token, "/auth/liga/"+nomeLiga).get(Liga.class);
+		} catch (UnknownHostException e) {
+			System.out.println("Não foi possivel encontrar a liga");
+			e.printStackTrace();
+		}
+		return liga;
+	}
+		
 	
 
 }

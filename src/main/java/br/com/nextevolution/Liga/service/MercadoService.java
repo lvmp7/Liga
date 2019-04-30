@@ -13,20 +13,22 @@ import br.com.nextevolution.Liga.model.Mercado;
 public class MercadoService extends Consulta{
 	@Autowired
 	private MercadoRepository mercadoRepository;
+	private Mercado mercado;
 	
 	public void status() {
-		Mercado mercado = null;
+		this.mercado = null;
 		try {
-			mercado = consulta("/mercado/status").get(Mercado.class);
+			this.mercado = consulta("/mercado/status").get(Mercado.class);
 		} catch (UnknownHostException e) {
 			System.out.println("Falha na comunicação com /mercado status");
 			e.printStackTrace();
 		}
-		mercadoRepository.save(mercado);
+		mercadoRepository.save(this.mercado);
 	}
 	
 	public Mercado getMercado(int rodada) {
 		status();
-		return (Mercado) mercadoRepository.getOne(rodada);
+		//return (Mercado) mercadoRepository.getOne(rodada);
+		return mercado;
 	}
 }

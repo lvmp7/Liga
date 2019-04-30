@@ -1,5 +1,8 @@
 package br.com.nextevolution.Liga.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Cartola {
 	private long time_id;
 	private int clube_id;
@@ -34,6 +37,10 @@ public class Cartola {
 	private String temporada_inicial;
 	private boolean simplificado;
 	private long sorteio_pro_num;
+	private double patrimonio;
+	private Ranking ranking;
+	private Pontos pontos;
+	private Variacao variacao;
 	
 	public long getTime_id() {
 		return time_id;
@@ -232,5 +239,29 @@ public class Cartola {
 	}
 	public void setSorteio_pro_num(long sorteio_pro_num) {
 		this.sorteio_pro_num = sorteio_pro_num;
+	}
+	public double getPatrimonio() {
+		return patrimonio;
+	}
+	public void setPatrimonio(double patrimonio) {
+		this.patrimonio = patrimonio;
+	}
+	public Ranking getRanking() {
+		return ranking;
+	}
+	public void setRanking(Ranking ranking) {
+		this.ranking = ranking;
+	}
+	public Pontos getPontos() {
+		return pontos;
+	}
+	public void setPontos(Pontos pontos) {
+		this.pontos = pontos;
+	}
+	public Variacao getVariacao() {
+		return variacao;
+	}
+	public void setVariacao(Variacao variacao) {
+		this.variacao = variacao;
 	}	
 }

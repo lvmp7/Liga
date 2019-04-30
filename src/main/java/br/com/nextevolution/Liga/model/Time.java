@@ -21,6 +21,7 @@ public class Time {
     private int total_ligas;
     private int total_ligas_matamata;
     
+    
 	public List<Atleta> getAtletas() {
 		return atletas;
 	}
