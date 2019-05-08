@@ -1,46 +1,49 @@
-server:
- port: 8080
 spring:
- datasource:
+ profile : dev
+ datasource :
   driver-class-name : org.mariadb.jdbc.Driver
   url : jdbc:mariadb://localhost:3306/cartola?useSSL=false
   username : root
   password :
- jpa:
-  hibernate:
-   ddl-auto: create
-   show-sql: true
-   dialect: org.hibernate.dialect.MySQL5InnoDBDialect
----
+ jpa :
+  hibernate :
+   ddl-auto : create
+   show-sql : true
+   dialect : org.hibernate.dialect.MySQL5InnoDBDialect
 server:
  port: 8080
-spring:
- profile:dev
- datasource:
-  driver-class-name : org.mariadb.jdbc.Driver
-  url : jdbc:mariadb://localhost:3306/cartola?useSSL=false
-  username : root
-  password :
- jpa:
-  hibernate:
-   ddl-auto: create
-   show-sql: true
-   dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ 
 ---
 spring:
  profile : prod
- datasource:
-  driverClassName:org.postgresql.Driver
-  maxActive:10
-  maxIdle:5
-  minIdle:2
-  initialSize:5
-  removeAbandoned:true
- jpa:
-  hibernate:
-   ddl-auto: create
-   show-sql: false
-   dialect: org.hibernate.dialect.PostgreSQLDialect
+ datasource :
+  driverClassName : org.postgresql.Driver
+  maxActive : 10
+  maxIdle : 5
+  minIdle : 2
+  initialSize : 5
+  removeAbandoned : true
+ jpa :
+  hibernate :
+   ddl-auto : create
+   show-sql : false
+   dialect : org.hibernate.dialect.PostgreSQLDialect
  
+server :
+ port : $port
+ 
+---
+
 server:
- port:$port
+ port: 8080
+spring:
+ datasource :
+  driver-class-name : org.mariadb.jdbc.Driver
+  url : jdbc:mariadb://localhost:3306/cartola?useSSL=false
+  username : root
+  password :
+ jpa :
+  hibernate :
+   ddl-auto : create
+   show-sql : true
+   dialect : org.hibernate.dialect.MySQL5InnoDBDialect

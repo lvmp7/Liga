@@ -24,13 +24,16 @@ import br.com.nextevolution.Liga.service.TimeRodadaService;
 @SessionAttributes({"liga,maisRico1","maisRico2","mito1","mito2"})
 public class CampeonatoController {
 	
-	@Autowired private LigaService ligaService;
-	@Autowired private CartoleiroService cartoleiroService;
-	@Autowired private TimeRodadaService timeRodadaService;
+	@Autowired 
+	private LigaService ligaService;
+	@Autowired 
+	private CartoleiroService cartoleiroService;
+	@Autowired 
+	private TimeRodadaService timeRodadaService;
 		
-	@GetMapping("/campeonatos")
+	@GetMapping("/hallfama")
 	public String campeonatos(Model model) {
-		return "campeonatos";
+		return "hallfama";
 	}
 	
 	@ModelAttribute("liga")
