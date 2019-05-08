@@ -1,1 +1,1 @@
-web: java -jar target/*.war --spring.profiles.active=production --server.port=$PORT
+web: java $JAVA_OPS -jar target/Liga-1.0-SNAPSHOT-jar-with-dependencies.jar --spring.profile.active=prod --server.port=$PORT
