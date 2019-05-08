@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="htttp://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Masters BR</title>
+	<link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+</head>
+
+<body>
+	<div th:replace="fragments/background"></div>
+
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+
+		<div class="row">
+			<div class="col">
+				<div class="jumbotron">
+					<p>Ops...</p>
+					<br/>
+					<p>Houve um problema no carregamento das informações</p>
+					<br/>
+					<br/>
+					<br/>
+					<p>Contate o Administrador para verificar o problema</p>
+				</div>
+			</div>
+	</div>
+
+
+
+	<div th:replace="fragments/footer ::footer"></div>
+	</div>
+</body>
+
+</html>

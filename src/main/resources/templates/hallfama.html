@@ -25,7 +25,24 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      	<div class="row">
+	      	<div class="col">
+	        	<img class="float-left" src="..." th:if="${mito1 != null}" th:src="${mito1.time.url_escudo_png}" th:alt="${mito1.time.nome}">
+	      		<p><span th:text="${mito1.time.nome}"></span> </p>
+	      		<br>Mitou na rodada <span th:text="${mito1.rodada}"></span></br>
+	      		<br>Na ocasião fez <span th:text="${#numbers.formatDecimal(mito1.pontos, 0, 'COMMA', 2, 'POINT')}"></span> pontos </br>
+	      		<p>A mitagem do momento! pontuação a ser alcançada</p>
+	      	</div>
+	      	<div class="col">
+	        	<img class="float-right" src="..." th:if="${mito2 != null}" th:src="${mito2.time.url_escudo_png}" th:alt="${mito2.time.nome}">
+	      		<p><span th:text="${mito2.time.nome}"></span> </p>
+	      		<br>Mitou na rodada <span th:text="${mito2.rodada}"></span></br>
+	      		<br>Na ocasião fez <span th:text="${#numbers.formatDecimal(mito2.pontos, 0, 'COMMA', 2, 'POINT')}"></span> pontos</br/>
+	      		<p>Não foi tão bom quanto o MITO, mas chegou perto e esta com a segunda melhor MITAGEM</p>
+	      	</div>
+      	</div>
+      	<p style="text-align: center;">Você é capaz de MITAR e bater essa pontuação?<br/>
+	    Escale os melhores e desbanque a pontuação dos atuais mitos da Liga</p>
       </div>
     </div>
   </div>
@@ -37,12 +54,30 @@
         </button>
       </h5>
     </div>
+    
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      	<div class="row">
+	      	<div class="col">
+	        	<img class="float-left" src="..." th:if="${maisRico1 != null}" th:src="${maisRico1.url_escudo_png}" th:alt="${maisRico1.nome}">
+	      		<p><span th:text="${maisRico1.nome}"></span> </p>
+	      		<br>Quem mais conseguiu rendimentos com suas escalações</br>
+	      		<br>Acumulando o patrimonio de C$<span th:text="${#numbers.formatDecimal(maisRico1.patrimonio, 0, 'COMMA', 2, 'POINT')}"> </span> cartoletas </br>
+	      	</div>
+	      	<div class="col">
+	        	<img class="float-left" src="..." th:if="${maisRico2 != null}" th:src="${maisRico2.url_escudo_png}" th:alt="${maisRico2.nome}">
+	      		<p><span th:text="${maisRico2.nome}"></span> </p>
+	      		<br>Aquele que está na cola do Mais rico</br>
+	      		<br>Acumulando o patrimonio de C$<span th:text="${#numbers.formatDecimal(maisRico2.patrimonio, 0, 'COMMA', 2, 'POINT')}"> </span> cartoletas </br>
+	      	</div>
+      	</div>
+      	<br/>
+      	<p style="text-align: center;">Você consegue brigar com esses mestres da economia?<br/>
+	    Por que as vezes os mais baratos, não são os mais rentaveis!</p>
       </div>
     </div>
   </div>
+  <!-- 
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
@@ -57,6 +92,7 @@
       </div>
     </div>
   </div>
+   -->
 </div>
 		
 		

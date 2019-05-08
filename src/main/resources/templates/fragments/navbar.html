@@ -1,9 +1,8 @@
 <header class="row justify-content-md-center 1rem">
 	<!-- Escudo -->
 	<div class="col-2">
-		<img class="rounded float-right" th:src="${liga.url_flamula_png}"
-			src="https://s2.glbimg.com/tjDX5RVPVwW_3WMEt_N4CL8tAYg=/https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_55/flamula/07/02/24/002520720170513170224"
-			height="50" width="50">
+		<img class="rounded float-right" src="https://s2.glbimg.com/tjDX5RVPVwW_3WMEt_N4CL8tAYg=/https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_55/flamula/07/02/24/002520720170513170224"
+		th:if="${liga != null}" th:src="${liga.url_flamula_png}" height="50" width="50">
 	</div>
 
 	<!-- Menu -->
@@ -23,7 +22,7 @@
 							aria-labelledy="navbarDropdownnMenuLink">
 					<!-- 	<a class="dropdown-item" href="#">Parcial da rodada</a>
 							<a class="dropdown-item" href="#">Libertadores</a>  -->
-							<a class="dropdown-item" href="@{/campeonatos}">Campeonatos</a>
+							<a class="dropdown-item" href="#" th:href="@{/hallfama}">Hall da Fama</a>
 						</div></li>
 					
 					
@@ -33,7 +32,7 @@
 			</div>
 		</nav>
 		<div class="divider" style="color: white;">
-			<span th:text="${liga.nome}">A liga</span> <span th:text="${liga.descricao}"></span>
+			<span th:if="${liga != null}" th:text="${liga.nome}">A liga</span> <span th:if="${liga != null}" th:text="${liga.descricao}"></span>
 		</div>
 	</div>
 </header>

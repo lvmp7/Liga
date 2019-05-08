@@ -1,49 +1,66 @@
 .nav-tabs .nav-link {
-   color: white;
+	color: white;
 }
-.jumbotron{
+
+.jumbotron {
 	opacity: 0.9;
 	padding: 10px;
 	background-color: black;
 	color: white;
 }
 
-.carrossel-text{
-	color: #ff3000;
-}
-
-
-.jumbotron img{
+.jumbotron img {
 	padding-left: 100px;
 	width: 80%;
 	height: auto;
-	opacity: 1.0!important;
+	opacity: 1.0 !important;
 	-webkit-filter: drop-shadow(1px 1px 0 white)
-                  drop-shadow(-1px -1px 0 white);
-  filter: drop-shadow(1px 1px 0 white) 
-          drop-shadow(-1px -1px 0 white);
+		drop-shadow(-1px -1px 0 white);
+	filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
 }
 
+.card {
+	background-color: black;
+	opacity: 0.9;
+}
+
+.card-body {
+	opacity: 0.9;
+	padding: 10px;
+	background-color: black;
+	color: white;
+}
+
+.card-body img {
+	width: 30%;
+	-webkit-filter: drop-shadow(1px 1px 0 white)
+		drop-shadow(-1px -1px 0 white);
+	filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
+}
+
+.carrossel-text {
+	color: #800080;
+}
 
 #bg {
-	position:fixed;
-	top:-50%;
-	left:-50%;
-	width:200%;
-	height:200%;
+	position: fixed;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
 }
 
 #bg img {
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	margin:auto;
-	min-width:50%;
-	min-height:50%;	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	min-width: 50%;
+	min-height: 50%;
 }
 
-.h5, h5{
+.h5, h5 {
 	color: blue;
 }
