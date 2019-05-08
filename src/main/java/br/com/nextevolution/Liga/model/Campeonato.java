@@ -1,30 +1,36 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Campeonato {
+public class Campeonato{
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int Id;
+	private int id;
 	private String nome;
-	@OneToMany(fetch=FetchType.EAGER,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private List<Cartoleiro> cartola;
-	@ManyToOne
-	private Rodada inicio;
-	@ManyToOne
-	private Rodada fim;
+	private int rodadaInicio;
+	private int rodadaFim;
 	private String descricao;
-	
+//	@Embedded
+//	TabelaPontuacao tabela;
+//	
+	public Campeonato() {
+	}
+
+	public Campeonato(String nome, int rodadaInicio, int rodadaFim, String descricao) {
+		this.nome = nome;
+		this.rodadaInicio = rodadaInicio;
+		this.rodadaFim = rodadaFim;
+		this.descricao = descricao;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -32,23 +38,17 @@ public class Campeonato {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<Cartoleiro> getCartola() {
-		return cartola;
+	public int getInicio() {
+		return rodadaInicio;
 	}
-	public void setCartola(List<Cartoleiro> cartola) {
-		this.cartola = cartola;
+	public void setInicio(int inicio) {
+		this.rodadaInicio = inicio;
 	}
-	public Rodada getInicio() {
-		return inicio;
+	public int getFim() {
+		return rodadaFim;
 	}
-	public void setInicio(Rodada inicio) {
-		this.inicio = inicio;
-	}
-	public Rodada getFim() {
-		return fim;
-	}
-	public void setFim(Rodada fim) {
-		this.fim = fim;
+	public void setFim(int fim) {
+		this.rodadaFim = fim;
 	}
 	
 	public String getDescricao() {
@@ -57,15 +57,68 @@ public class Campeonato {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getRodadaInicio() {
+		return rodadaInicio;
+	}
+
+	public void setRodadaInicio(int rodadaInicio) {
+		this.rodadaInicio = rodadaInicio;
+	}
+
+	public int getRodadaFim() {
+		return rodadaFim;
+	}
+
+	public void setRodadaFim(int rodadaFim) {
+		this.rodadaFim = rodadaFim;
+	}
+	
+	public List<Cartoleiro> vencedores(List<Cartoleiro> cartoleiros, int posicoes){
+		Collections.sort(cartoleiros);		
+		List<Cartoleiro> vencedores = new ArrayList<Cartoleiro>();
+		for (int i = 0; i < posicoes; i++) {
+			vencedores.add( cartoleiros.get(i) );
+		}
+		return vencedores;
+	}
+	
+//	public TabelaPontuacao getTabela() {
+//		return tabela;
+//	}
+//
+//	public void setTabela(TabelaPontuacao tabela) {
+//		this.tabela = tabela;
+//	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+    	if (! (obj instanceof Campeonato) ) return false;
+    	Campeonato that = (Campeonato) obj;
+    	return Objects.equals(id, that.id) ;
+    }
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id,nome);
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append(nome+"\n");
-		str.append("inicio: Rodada "+inicio.getId()+"\n");
-		str.append("fim: Rodada "+fim.getId()+"\n");
-		str.append("Descricao: "+descricao);
-		
+		str.append("inicio: Rodada "+ rodadaInicio+"\n");
+		str.append("fim: Rodada "+ rodadaFim+"\n");
+		str.append("Descricao: "+ descricao);
 		return str.toString();
 	}
-
 }

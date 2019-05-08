@@ -9,13 +9,13 @@
 }
 
 .carrossel-text{
-	color: #8585e0;
+	color: #ff3000;
 }
 
 
 .jumbotron img{
 	padding-left: 100px;
-	width: 60%;
+	width: 80%;
 	height: auto;
 	opacity: 1.0!important;
 	-webkit-filter: drop-shadow(1px 1px 0 white)

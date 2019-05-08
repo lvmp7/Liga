@@ -1,10 +1,17 @@
 package br.com.nextevolution.Liga.model;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Clube {
+	@Id
 	private int id;
 	private String nome;
 	private String abreviacao;
 	private int posicao;
+	@Embedded
 	private Escudos escudos;
 	private String nome_fantasia;
 	public int getId() {

@@ -1,8 +1,13 @@
 package br.com.nextevolution.Liga.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Status {
-	 private int id;
-	 private String nome;
+	@Id
+	private int id;
+	private String nome;
 	public int getId() {
 		return id;
 	}
@@ -15,6 +20,4 @@ public class Status {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	 
-	 
 }

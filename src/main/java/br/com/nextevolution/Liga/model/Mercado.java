@@ -1,9 +1,9 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -97,5 +97,18 @@ public class Mercado {
 
     public void setMercado_pos_rodada(boolean mercado_pos_rodada) {
         this.posRodada = mercado_pos_rodada;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj == this) return true;
+    	if (! (obj instanceof Mercado) ) return false;
+    	Mercado that = (Mercado) obj;
+    	return Objects.equals(rodada_atual, that.rodada_atual);
+    }
+    
+    @Override
+    public int hashCode() {
+    	return rodada_atual;
     }
 }

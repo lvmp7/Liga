@@ -1,19 +1,26 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Cartoleiro {
+public class Cartoleiro implements Comparable<Cartoleiro>{
 	@Id
-	private long time_id;
+	@JsonProperty("time_id")
+	private long id;
 	private int clube_id;
 	private int esquema_id;
 	private String foto_perfil;
@@ -24,7 +31,6 @@ public class Cartoleiro {
 	private String url_escudo_png;
 	private String url_camisa_svg;
 	private String url_camisa_png;
-	private int rodada_time_id;
 	private String temporada_inicial;
 	private double patrimonio;
 	@ManyToOne(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
@@ -36,12 +42,16 @@ public class Cartoleiro {
 	@ManyToOne(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
 	@JoinColumn(name="idVariacao")
 	private Variacao variacao;
+	@OneToOne(mappedBy="time")
+	private Time time;
+	@OneToMany
+	private List<Pontos> pontuacao;
 	
 	public long getTime_id() {
-		return time_id;
+		return id;
 	}
-	public void setTime_id(long time_id) {
-		this.time_id = time_id;
+	public void setTime_id(long id) {
+		this.id = id;
 	}
 	public int getClube_id() {
 		return clube_id;
@@ -103,12 +113,6 @@ public class Cartoleiro {
 	public void setUrl_camisa_png(String url_camisa_png) {
 		this.url_camisa_png = url_camisa_png;
 	}
-	public int getRodada_time_id() {
-		return rodada_time_id;
-	}
-	public void setRodada_time_id(int rodada_time_id) {
-		this.rodada_time_id = rodada_time_id;
-	}
 	public String getTemporada_inicial() {
 		return temporada_inicial;
 	}
@@ -138,5 +142,46 @@ public class Cartoleiro {
 	}
 	public void setVariacao(Variacao variacao) {
 		this.variacao = variacao;
-	}	
+	}
+	
+	public Time getTime() {
+		return time;
+	}
+	
+	public void setTime(Time time) {
+		this.time = time;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+    	if (! (obj instanceof Cartoleiro) ) return false;
+    	Cartoleiro that = (Cartoleiro) obj;
+    	return Objects.equals(slug, that.slug); 
+    }
+	
+	@Override
+	public int hashCode() {
+		return this.slug.hashCode();
+	}
+	public int compareTo(Cartoleiro outro) {
+		return Double.compare(this.pontos.getCampeonato(), outro.pontos.getCampeonato());
+	}
+	
+	public List<Pontos> getPontuacao() {
+		return pontuacao;
+	}
+	
+	public void setPontuacao(List<Pontos> pontuacao) {
+		this.pontuacao = pontuacao;
+	}
+	
+	public void addPontuacao(int rodada ,Double pontos){
+		Pontos p = new Pontos();
+		p.setId(rodada);
+		p.setRodada(rodada);
+		
+		pontuacao.add(p);
+	}
+	
 }

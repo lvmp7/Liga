@@ -1,21 +1,28 @@
 package br.com.nextevolution.Liga.model;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Atleta {
-	String nome;
-    String slug;
-    String apelido;
-    String foto;
-    int atleta_id;
-    int rodada_id;
-    int clube_id;
-    int posicao_id;
-    int status_id;
-    int pontos_num;
-    int preco_num;
-    int variacao_num;
-    int media_num;
-    int jogos_num;
-    String scout;
+	private String nome;
+	private String slug;
+	private String apelido;
+	private String foto;
+	@Id
+	private int atleta_id;
+	private int rodada_id;
+	private int clube_id;
+	private int posicao_id;
+	private int status_id;
+	private int pontos_num;
+	private int preco_num;
+	private int variacao_num;
+	private int media_num;
+	private int jogos_num;
+	@Embedded
+    private Scout scout;
     
 	public String getNome() {
 		return nome;
@@ -101,12 +108,24 @@ public class Atleta {
 	public void setJogos_num(int jogos_num) {
 		this.jogos_num = jogos_num;
 	}
-	public String getScout() {
+	public Scout getScout() {
 		return scout;
 	}
-	public void setScout(String scout) {
+	public void setScout(Scout scout) {
 		this.scout = scout;
 	}
     
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if( !(obj instanceof Atleta)) return false;
+		Atleta that = (Atleta) obj;
+		return Integer.compare(atleta_id,that.atleta_id)==0;
+	}
+	
+	@Override
+	public int hashCode() {
+		return slug.hashCode();
+	}
     
 }

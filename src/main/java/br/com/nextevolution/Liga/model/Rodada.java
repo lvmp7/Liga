@@ -1,6 +1,7 @@
 package br.com.nextevolution.Liga.model;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,9 +15,9 @@ public class Rodada {
 	@JsonProperty("rodada_id")
 	private int id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date inicio;
+	private Calendar inicio;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fim;
+	private Calendar fim;
 	
 	public Rodada() {
 		super();
@@ -28,16 +29,29 @@ public class Rodada {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getInicio() {
+	public Calendar getInicio() {
 		return inicio;
 	}
-	public void setInicio(Date inicio) {
+	public void setInicio(Calendar inicio) {
 		this.inicio = inicio;
 	}
-	public Date getFim() {
+	public Calendar getFim() {
 		return fim;
 	}
-	public void setFim(Date fim) {
+	public void setFim(Calendar fim) {
 		this.fim = fim;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+    	if (! (obj instanceof Rodada) ) return false;
+    	Rodada that = (Rodada) obj;
+    	return Objects.equals(id, that.id);
+    }
+	
+	@Override
+	public int hashCode() {
+		return id;
 	}
 }

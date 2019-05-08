@@ -1,14 +1,19 @@
 package br.com.nextevolution.Liga.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Embeddable
 public class Escudos {
-	@XmlAttribute(name="60x60")
+	
+	@JsonProperty(value="60x60")
 	private String t60x60;
-	@XmlAttribute(name="45x45")
+	@JsonProperty(value="45x45")
 	private String t45x45;
-	@XmlAttribute(name="30x30")
+	@JsonProperty(value="30x30")
 	private String t30x30;
+	
 	public String getT60x60() {
 		return t60x60;
 	}

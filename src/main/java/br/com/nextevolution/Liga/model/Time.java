@@ -1,14 +1,34 @@
 package br.com.nextevolution.Liga.model;
 
 import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+@Entity
 public class Time {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	@OneToMany
     private List<Atleta> atletas;
-    private List<Clube> clubes;
-    private List<Posicao> posicoes;
-    private List<Status> status;
+//	@ManyToMany
+//    private List<Clube> clubes;
+//	@ManyToMany
+//    private List<Posicao> posicoes;
+//	@ManyToMany
+//    private List<Status> status;
     private int capitao_id;
+    @OneToOne
     private Cartoleiro time;
     private double patrimonio;
     private int esquema_id;
@@ -16,11 +36,9 @@ public class Time {
     private double valor_time;
     private int rodada_atual;
     private double variacao_patrimonio;
-    private double variacao_pontos;
-    private List<String> servicos;
+    private double variacao_pontos;    
     private int total_ligas;
     private int total_ligas_matamata;
-    
     
 	public List<Atleta> getAtletas() {
 		return atletas;
@@ -28,24 +46,24 @@ public class Time {
 	public void setAtletas(List<Atleta> atletas) {
 		this.atletas = atletas;
 	}
-	public List<Clube> getClubes() {
-		return clubes;
-	}
-	public void setClubes(List<Clube> clubes) {
-		this.clubes = clubes;
-	}
-	public List<Posicao> getPosicoes() {
-		return posicoes;
-	}
-	public void setPosicoes(List<Posicao> posicoes) {
-		this.posicoes = posicoes;
-	}
-	public List<Status> getStatus() {
-		return status;
-	}
-	public void setStatus(List<Status> status) {
-		this.status = status;
-	}
+//	public List<Clube> getClubes() {
+//		return clubes;
+//	}
+//	public void setClubes(List<Clube> clubes) {
+//		this.clubes = clubes;
+//	}
+//	public List<Posicao> getPosicoes() {
+//		return posicoes;
+//	}
+//	public void setPosicoes(List<Posicao> posicoes) {
+//		this.posicoes = posicoes;
+//	}
+//	public List<Status> getStatus() {
+//		return status;
+//	}
+//	public void setStatus(List<Status> status) {
+//		this.status = status;
+//	}
 	public int getCapitao_id() {
 		return capitao_id;
 	}
@@ -100,12 +118,6 @@ public class Time {
 	public void setVariacao_pontos(double variacao_pontos) {
 		this.variacao_pontos = variacao_pontos;
 	}
-	public List<String> getServicos() {
-		return servicos;
-	}
-	public void setServicos(List<String> servicos) {
-		this.servicos = servicos;
-	}
 	public int getTotal_ligas() {
 		return total_ligas;
 	}
@@ -117,11 +129,16 @@ public class Time {
 	}
 	public void setTotal_ligas_matamata(int total_ligas_matamata) {
 		this.total_ligas_matamata = total_ligas_matamata;
+	} 
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+	    if (!(obj instanceof Time)) return false;
+	    Time that = (Time) obj;
+	    return Objects.equals(id, that.id) &&
+	    		Objects.equals(time, that.time);
 	}
-    
-    
-    
-    
 }
 
 

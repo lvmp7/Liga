@@ -1,34 +1,29 @@
 package br.com.nextevolution.Liga.model;
 
 import java.util.Calendar;
-import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Liga {	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int liga_id;
+	@JsonProperty("liga_id")
+	private int id;
 	private int time_dono_id;
 	private int clube_id;
     private String nome;
     private String descricao;
     private String slug;
     private String tipo;
-    private boolean mata_mata;
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Calendar criacao;
@@ -47,14 +42,12 @@ public class Liga {
     private String capitao_ranking_num;
     private String capitao_variacao_num;
     private String total_times_liga;
-    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
-    private List<Cartoleiro> times;
     
-	public int getLiga_id() {
-		return liga_id;
+	public int getId() {
+		return id;
 	}
-	public void setLiga_id(int liga_id) {
-		this.liga_id = liga_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getTime_dono_id() {
 		return time_dono_id;
@@ -92,11 +85,11 @@ public class Liga {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public boolean isMata_mata() {
-		return mata_mata;
+	public Calendar getCriacao() {
+		return criacao;
 	}
-	public void setMata_mata(boolean mata_mata) {
-		this.mata_mata = mata_mata;
+	public void setCriacao(Calendar criacao) {
+		this.criacao = criacao;
 	}
 	public String getUrl_flamula_svg() {
 		return url_flamula_svg;
@@ -188,10 +181,27 @@ public class Liga {
 	public void setTotal_times_liga(String total_times_liga) {
 		this.total_times_liga = total_times_liga;
 	}
-	public List<Cartoleiro> getTimes() {
-		return times;
-	}
-	public void setTimes(List<Cartoleiro> times) {
-		this.times = times;
-	}
+	
+	@Override
+    public boolean equals(Object obj) {
+		if (obj == this) return true;
+    	if (! (obj instanceof Liga) ) return false;
+    	Liga that = (Liga) obj;
+    	return Objects.equals(slug, that.slug);
+    }
+    
+    @Override
+    public int hashCode() {
+    	return slug.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+    	System.out.println("id :" +id);
+    	System.out.println("nome: "+ nome);
+    	System.out.println("Flamula: "+url_flamula_png);
+    	System.out.println("quant Times: "+ quantidade_times);
+    	System.out.println("dono: "+ time_dono_id);
+    	return super.toString();
+    }
 }

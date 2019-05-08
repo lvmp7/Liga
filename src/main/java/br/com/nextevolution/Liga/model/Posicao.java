@@ -1,6 +1,11 @@
 package br.com.nextevolution.Liga.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Posicao {
+	@Id
 	private int id;
 	private String nome;
 	private String abreviacao;

@@ -1,17 +1,7 @@
 package br.com.nextevolution.Liga.teste;
 
-import java.util.List;
-
-import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.nextevolution.Liga.autenticacao.Token;
-import br.com.nextevolution.Liga.model.Liga;
-import br.com.nextevolution.Liga.model.Mercado;
-import br.com.nextevolution.Liga.model.Rodada;
-import br.com.nextevolution.Liga.parser.Ligas;
-import br.com.nextevolution.Liga.service.CartolaAuthenticationService;
-import br.com.nextevolution.Liga.service.ConsultaService;
 import br.com.nextevolution.Liga.service.MercadoService;
 import br.com.nextevolution.Liga.service.RodadaService;
 
