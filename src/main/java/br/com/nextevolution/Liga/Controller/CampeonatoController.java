@@ -75,4 +75,5 @@ public class CampeonatoController {
 				.skip(1)
 				.findFirst().get();
 	}
+	
 }

@@ -3,10 +3,8 @@ package br.com.nextevolution.Liga.service;
 import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 import br.com.nextevolution.Liga.Consulta;
 import br.com.nextevolution.Liga.Repository.LigaRepository;
@@ -15,7 +13,6 @@ import br.com.nextevolution.Liga.model.Liga;
 import br.com.nextevolution.Liga.model.LigaCartola;
 
 @Service
-@Scope(value=WebApplicationContext.SCOPE_SESSION)
 public class LigaService extends Consulta{
 	
 	@Autowired
