@@ -95,7 +95,7 @@ public class CampeonatoService{
 			List<Atleta> atletas = new ArrayList<Atleta>();
 			timeRodadaService.getTimes().stream().filter(t-> t.getCartoleiro().equals(cartoleiro))
 			.forEach(t-> atletas.addAll(t.getAtletas()) );
-			cartoleiro.setGols( atletas.stream().filter(a->a.getScout().getGol()>0).collect(Collectors.summingInt(a->a.getScout().getGol())) );
+			cartoleiro.setGols( atletas.stream().collect(Collectors.summingInt(a->a.getScout().getGol())) );			
 		return cartoleiro;
 	}
 	
@@ -103,8 +103,7 @@ public class CampeonatoService{
 			List<Atleta> atletas = new ArrayList<Atleta>();
 			timeRodadaService.getTimes().stream().filter(t-> t.getCartoleiro().equals(cartoleiro))
 			.forEach(t-> atletas.addAll(t.getAtletas()) );
-			
-			cartoleiro.setAssistencias( atletas.stream().filter(a->a.getScout().getAssistencia()>0).collect(Collectors.summingInt(a->a.getScout().getAssistencia())) );
+			cartoleiro.setAssistencias( atletas.stream().collect(Collectors.summingInt(a->a.getScout().getAssistencia())) );
 			return cartoleiro;
 	}
 	

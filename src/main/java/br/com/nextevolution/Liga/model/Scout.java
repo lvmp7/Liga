@@ -9,24 +9,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Embeddable
 public class Scout {
-	@JsonProperty("sg") @Column(nullable=true) private int saldoGol;
-	@JsonProperty("dp") @Column(nullable=true) private int defesaPenalti;
-	@JsonProperty("dd") @Column(nullable=true) private int defesaDificil;
-	@JsonProperty("rb") @Column(nullable=true) private int roubadaBola;
-	@JsonProperty("gc") @Column(nullable=true) private int golContra;
-	@JsonProperty("cv") @Column(nullable=true) private int cartaoVermelho;
-	@JsonProperty("ca") @Column(nullable=true) private int cartaoAmarelo;
-	@JsonProperty("gs") @Column(nullable=true) private int golSofrido;
-	@JsonProperty("fc") @Column(nullable=true) private int faltaCometida;
-	@JsonProperty("g") @Column(nullable=true) private int gol;
-	@JsonProperty("a") @Column(nullable=true) private int assistencia;
-	@JsonProperty("ft") @Column(nullable=true) private int finalizacaoTrave;
-	@JsonProperty("fd") @Column(nullable=true) private int finalizacaoDefendida;
-	@JsonProperty("ff") @Column(nullable=true) private int finalizacaoFora;
-	@JsonProperty("fs") @Column(nullable=true) private int faltaSofrida;
-	@JsonProperty("pp") @Column(nullable=true) private int penaltiPerdido;
-	@JsonProperty("i") @Column(nullable=true) private int impedimento;
-	@JsonProperty("pe") @Column(nullable=true) private int passeErrado;
+	@JsonProperty("SG") @Column(nullable=true) private int saldoGol;
+	@JsonProperty("DP") @Column(nullable=true) private int defesaPenalti;
+	@JsonProperty("DD") @Column(nullable=true) private int defesaDificil;
+	@JsonProperty("RB") @Column(nullable=true) private int roubadaBola;
+	@JsonProperty("GC") @Column(nullable=true) private int golContra;
+	@JsonProperty("CV") @Column(nullable=true) private int cartaoVermelho;
+	@JsonProperty("CA") @Column(nullable=true) private int cartaoAmarelo;
+	@JsonProperty("GS") @Column(nullable=true) private int golSofrido;
+	@JsonProperty("FC") @Column(nullable=true) private int faltaCometida;
+	@JsonProperty("G") @Column(nullable=true) private int gol;
+	@JsonProperty("A") @Column(nullable=true) private int assistencia;
+	@JsonProperty("FT") @Column(nullable=true) private int finalizacaoTrave;
+	@JsonProperty("FD") @Column(nullable=true) private int finalizacaoDefendida;
+	@JsonProperty("FF") @Column(nullable=true) private int finalizacaoFora;
+	@JsonProperty("FS") @Column(nullable=true) private int faltaSofrida;
+	@JsonProperty("PP") @Column(nullable=true) private int penaltiPerdido;
+	@JsonProperty("I") @Column(nullable=true) private int impedimento;
+	@JsonProperty("PE") @Column(nullable=true) private int passeErrado;
 	
 	public int getSaldoGol() {
 		return saldoGol;
