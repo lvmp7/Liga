@@ -19,6 +19,11 @@
 	filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
 }
 
+.img-tabela{
+	width: 20%!important;
+	padding: 10px!important;
+}
+
 .card {
 	background-color: black;
 	opacity: 0.9;
@@ -63,4 +68,18 @@
 
 .h5, h5 {
 	color: blue;
+}
+
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
 }

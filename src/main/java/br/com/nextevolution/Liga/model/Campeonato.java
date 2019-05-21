@@ -1,7 +1,6 @@
 package br.com.nextevolution.Liga.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -82,12 +81,8 @@ public class Campeonato{
 		this.rodadaFim = rodadaFim;
 	}
 	
-	public List<Cartoleiro> vencedores(List<Cartoleiro> cartoleiros, int posicoes){
-		Collections.sort(cartoleiros);		
-		List<Cartoleiro> vencedores = new ArrayList<Cartoleiro>();
-		for (int i = 0; i < posicoes; i++) {
-			vencedores.add( cartoleiros.get(i) );
-		}
+	public List<TimeRodada> vencedores(){
+		List<TimeRodada> vencedores = new ArrayList<TimeRodada>();
 		return vencedores;
 	}
 	

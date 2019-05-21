@@ -20,15 +20,15 @@
 					<div>Times da Liga</div>
 					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner" >
-							<th:block th:each="cartoleiro :${cartoleiros}">
+							<th:if="${cartoleiros != null}" th:block th:each="cartoleiro :${cartoleiros}">
 							<div th:attr="data-slide-to=${cartoleiroStat.index}" th:class="${cartoleiroStat.index ==0}? 'carousel-item active' : 'carousel-item'">
 								<img class="d-block " src="..." 
 									th:src="${cartoleiro.url_escudo_png}" th:alt="${cartoleiro.nome}" >
 								<div class="carousel-caption d-none d-md-block">
 									<h5 class="carrossel-text"> <span th:text="${cartoleiro.nome}"> </span>	</h5>
 									<p class="carrossel-text"> Patrimonio: C$<span th:text="${#numbers.formatDecimal(cartoleiro.patrimonio, 0, 'COMMA', 2, 'POINT')}"> </span>
-										- Total de pontos: <span th:text="${#numbers.formatDecimal(cartoleiro.pontos.turno, 0, 'COMMA', 2, 'POINT')}"></span> pts
-									</p>
+										- Total de pontos: <span th:text="${#numbers.formatDecimal(cartoleiro.pontos.turno, 0, 'COMMA', 2, 'POINT')}"> </span> pts 
+										</p>
 								</div>
 							</div>
 							</th:block>
@@ -51,17 +51,17 @@
 				<div id="carouselExampleSlidesControls" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="rounded d-block" src="..."  th:src="${mito1.time.url_escudo_png}" th:alt="mito1.time.nome">
+							<img class="rounded d-block" src="..."  th:src="${mito1.cartoleiro.url_escudo_png}" th:alt="mito1.cartoleiro.nome">
 								<div class="carousel-caption d-none d-md-block">
-									<h5 class="carrossel-text"> <span th:text="${mito1.time.nome}"> </span>	</h5>
+									<h5 class="carrossel-text"> <span th:text="${mito1.cartoleiro.nome}"> </span>	</h5>
 										<p class="carrossel-text"> Pontos: <span th:text="${#numbers.formatDecimal(mito1.pontos, 0, 'COMMA', 2, 'POINT')}"> </span> 
 										Rodada: <span th:text="${mito1.rodada}"></span></p>
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img class="rounded d-block" src="..."  th:src="${mito2.time.url_escudo_png}" th:alt="mito2.time.nome">
+							<img class="rounded d-block" src="..."  th:src="${mito2.cartoleiro.url_escudo_png}" th:alt="mito2.cartoleiro.nome">
 								<div class="carousel-caption d-none d-md-block">
-									<h5 class="carrossel-text"> <span th:text="${mito2.time.nome}"> </span>	</h5>
+									<h5 class="carrossel-text"> <span th:text="${mito2.cartoleiro.nome}"> </span>	</h5>
 										<p class="carrossel-text"> Pontos: <span th:text="${#numbers.formatDecimal(mito2.pontos, 0, 'COMMA', 2, 'POINT')}"> </span> 
 										Rodada: <span th:text="${mito2.rodada}"></span></p>
 							</div>

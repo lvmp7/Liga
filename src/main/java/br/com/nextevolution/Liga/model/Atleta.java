@@ -1,19 +1,30 @@
 package br.com.nextevolution.Liga.model;
 
+import java.util.Objects;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity	
 public class Atleta {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	@JsonProperty("atleta_id")
+	private int idAtleta;
+	@JsonProperty("rodada_id")
+	private int rodadaId;
+	@JsonProperty("clube_id")
+	private int clubeId;
 	private String nome;
 	private String slug;
 	private String apelido;
 	private String foto;
-	@Id
-	private int atleta_id;
-	private int rodada_id;
-	private int clube_id;
 	private int posicao_id;
 	private int status_id;
 	private int pontos_num;
@@ -22,8 +33,32 @@ public class Atleta {
 	private int media_num;
 	private int jogos_num;
 	@Embedded
-    private Scout scout;
-    
+	private Scout scout;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getAtletaId() {
+		return idAtleta;
+	}
+	public void setAtletaId(int idAtleta) {
+		this.idAtleta = idAtleta;
+	}
+	public int getRodadaId() {
+		return rodadaId;
+	}
+	public void setRodadaId(int rodadaId) {
+		this.rodadaId = rodadaId;
+	}
+	public int getClubeId() {
+		return clubeId;
+	}
+	public void setClubeId(int clubeId) {
+		this.clubeId = clubeId;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -49,22 +84,10 @@ public class Atleta {
 		this.foto = foto;
 	}
 	public int getAtleta_id() {
-		return atleta_id;
+		return id;
 	}
 	public void setAtleta_id(int atleta_id) {
-		this.atleta_id = atleta_id;
-	}
-	public int getRodada_id() {
-		return rodada_id;
-	}
-	public void setRodada_id(int rodada_id) {
-		this.rodada_id = rodada_id;
-	}
-	public int getClube_id() {
-		return clube_id;
-	}
-	public void setClube_id(int clube_id) {
-		this.clube_id = clube_id;
+		this.id = atleta_id;
 	}
 	public int getPosicao_id() {
 		return posicao_id;
@@ -120,12 +143,11 @@ public class Atleta {
 		if(this == obj) return true;
 		if( !(obj instanceof Atleta)) return false;
 		Atleta that = (Atleta) obj;
-		return Integer.compare(atleta_id,that.atleta_id)==0;
+		return (Integer.compare(idAtleta,that.idAtleta)==0 && (Integer.compare(rodadaId, rodadaId)==0) ) ;
 	}
 	
 	@Override
 	public int hashCode() {
-		return slug.hashCode();
+		return Objects.hash(slug,idAtleta,rodadaId);
 	}
-    
 }

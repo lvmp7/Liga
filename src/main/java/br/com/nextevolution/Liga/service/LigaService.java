@@ -15,14 +15,10 @@ import br.com.nextevolution.Liga.model.LigaCartola;
 @Service
 public class LigaService extends Consulta{
 	
-	@Autowired
-	private LigaRepository ligaRepository;
-	@Autowired
-	private CartolaAuthenticationService auth;
-	@Autowired
-	private CartoleiroService cartoleiroService;
-	
-	
+	@Autowired private LigaRepository ligaRepository;
+	@Autowired private CartolaAuthenticationService auth;
+	@Autowired private CartoleiroService cartoleiroService;
+		
 	public Liga getLiga() {
 		return	ligaRepository.findAll().get(0);
 	}
@@ -35,6 +31,7 @@ public class LigaService extends Consulta{
 	}
 	
 	public void atualiza() {
+		System.out.println("executando liga");
 		try {
 			LigaCartola ligaCartola = consulta(auth.getToken(), "/auth/liga/masters-br").get(LigaCartola.class);			
 			for (Cartoleiro cartoleiro : ligaCartola.getTimes() ) {

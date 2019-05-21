@@ -44,6 +44,6 @@ spring:
   password :
  jpa :
   hibernate :
-   ddl-auto : create
+   ddl-auto : update
    show-sql : true
    dialect : org.hibernate.dialect.MySQL5InnoDBDialect

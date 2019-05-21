@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Pontos {
+public class Pontos implements Comparable<Pontos>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -47,5 +47,9 @@ public class Pontos {
 	}
 	public void setCampeonato(double campeonato) {
 		this.campeonato = campeonato;
+	}
+	@Override
+	public int compareTo(Pontos p) {
+		return Double.compare(campeonato, p.getCampeonato());
 	}
 }

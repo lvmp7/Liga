@@ -4,14 +4,14 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.WebApplicationContext;
 
+import br.com.nextevolution.Liga.Campeonato.MitoDaRodada;
+import br.com.nextevolution.Liga.model.Campeonato;
 import br.com.nextevolution.Liga.model.Cartoleiro;
 import br.com.nextevolution.Liga.model.Liga;
 import br.com.nextevolution.Liga.model.Mercado;
@@ -22,7 +22,6 @@ import br.com.nextevolution.Liga.service.MercadoService;
 import br.com.nextevolution.Liga.service.TimeRodadaService;
 
 @Controller
-@Scope(value=WebApplicationContext.SCOPE_SESSION)
 @SessionAttributes({"mercado","liga","cartoleiros","maisRico1","maisRico2","mito1","mito2"})
 public class HomeController {
 	
@@ -30,6 +29,7 @@ public class HomeController {
 	@Autowired private LigaService ligaService;
 	@Autowired private CartoleiroService cartoleiroService;
 	@Autowired private TimeRodadaService timeRodadaService;
+	private Campeonato mito;
 	
 	@GetMapping("/")
 	public String home(Model model) {
@@ -85,5 +85,4 @@ public class HomeController {
 				.skip(1)
 				.findFirst().get();
 	}
-	
 }

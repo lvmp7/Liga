@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,7 +20,7 @@ public class TimeRodada {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="atleta_id")
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Atleta> atletas;
 	@JsonProperty("capitao_id")
 	private int capitao;
@@ -31,6 +31,13 @@ public class TimeRodada {
 	private int rodada;
 	private double pontos;
 	private double patrimonio;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public List<Atleta> getAtletas() {
 		return atletas;
@@ -44,10 +51,10 @@ public class TimeRodada {
 	public void setCapitao(int capitao) {
 		this.capitao = capitao;
 	}
-	public Cartoleiro getTime() {
+	public Cartoleiro getCartoleiro() {
 		return cartoleiro;
 	}
-	public void setTime(Cartoleiro cartoleiro) {
+	public void setCartoleiro(Cartoleiro cartoleiro) {
 		this.cartoleiro = cartoleiro;
 	}
 	public int getRodada() {
@@ -74,7 +81,7 @@ public class TimeRodada {
 		if(this == obj) return true;
 		if(! (obj instanceof TimeRodada)) return false;
 		TimeRodada that = (TimeRodada) obj;
-		return Integer.compare(id, that.id) ==0 ? true:false;
+		return Integer.compare(id, that.id) ==0 && Integer.compare(rodada, that.rodada) ==0 ;
 	}
 	
 	@Override

@@ -27,15 +27,15 @@
       <div class="card-body">
       	<div class="row">
 	      	<div class="col">
-	        	<img class="float-left" src="..." th:if="${mito1 != null}" th:src="${mito1.time.url_escudo_png}" th:alt="${mito1.time.nome}">
-	      		<p><span th:text="${mito1.time.nome}"></span> </p>
+	        	<img class="float-left" src="..." th:if="${mito1 != null}" th:src="${mito1.cartoleiro.url_escudo_png}" th:alt="${mito1.cartoleiro.nome}">
+	      		<p><span th:text="${mito1.cartoleiro.nome}"></span> </p>
 	      		<br>Mitou na rodada <span th:text="${mito1.rodada}"></span></br>
 	      		<br>Na ocasião fez <span th:text="${#numbers.formatDecimal(mito1.pontos, 0, 'COMMA', 2, 'POINT')}"></span> pontos </br>
 	      		<p>A mitagem do momento! pontuação a ser alcançada</p>
 	      	</div>
 	      	<div class="col">
-	        	<img class="float-right" src="..." th:if="${mito2 != null}" th:src="${mito2.time.url_escudo_png}" th:alt="${mito2.time.nome}">
-	      		<p><span th:text="${mito2.time.nome}"></span> </p>
+	        	<img class="float-right" src="..." th:if="${mito2 != null}" th:src="${mito2.cartoleiro.url_escudo_png}" th:alt="${mito2.cartoleiro.nome}">
+	      		<p><span th:text="${mito2.cartoleiro.nome}"></span> </p>
 	      		<br>Mitou na rodada <span th:text="${mito2.rodada}"></span></br>
 	      		<br>Na ocasião fez <span th:text="${#numbers.formatDecimal(mito2.pontos, 0, 'COMMA', 2, 'POINT')}"></span> pontos</br/>
 	      		<p>Não foi tão bom quanto o MITO, mas chegou perto e esta com a segunda melhor MITAGEM</p>
@@ -77,6 +77,36 @@
       </div>
     </div>
   </div>
+  
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Vencedores da Rodada
+        </button>
+      </h5>
+    </div>
+    
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+      	<div class="row">
+	       		<th:block th:each="vencedorRodada :${vencedoresRodada}">
+	      	<div class="col">
+	        	<div class="card" style="width: 18rem;">
+	        		<p class="card-text">Rodada: <span th:text="${vencedorRodada.rodada}"> </span></p>
+  					<img class="card-img-top" src="..." th:src="${vencedorRodada.cartoleiro.url_escudo_png}" th:alt="${vencedorRodada.cartoleiro.nome}" alt="Card image cap">
+  					<div class="card-body">
+    					<p class="card-text">Pontos: <span th:text="${#numbers.formatDecimal(vencedorRodada.pontos, 0, 'COMMA', 2, 'POINT')}"> </span></p>
+  					</div>
+				</div>
+	      	</div>
+				<th:block>
+ 			
+      	</div>
+      </div>
+    </div>
+  </div>
+  
   <!-- 
   <div class="card">
     <div class="card-header" id="headingThree">

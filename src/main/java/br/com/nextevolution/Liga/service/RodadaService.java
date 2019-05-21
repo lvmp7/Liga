@@ -36,9 +36,13 @@ public class RodadaService extends Consulta {
 		return rodadaRepository.findById(rodada).get();
 	}
 	
+	public List<Rodada> getAll(){
+		return rodadaRepository.findAll();
+	}
+	
 	@Transactional
 	public void save(Rodada rodada) {
 		rodadaRepository.save(rodada);
 	}
-
+	
 }

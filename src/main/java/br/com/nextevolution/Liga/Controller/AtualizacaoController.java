@@ -4,36 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.WebApplicationContext;
 
 import br.com.nextevolution.Liga.model.Campeonato;
 import br.com.nextevolution.Liga.service.CampeonatoService;
-import br.com.nextevolution.Liga.service.LigaService;
 import br.com.nextevolution.Liga.service.MercadoService;
-import br.com.nextevolution.Liga.service.RodadaService;
 import br.com.nextevolution.Liga.service.TimeRodadaService;
 
 @Controller
-@Scope(value=WebApplicationContext.SCOPE_SESSION)
 public class AtualizacaoController {
 	
-	@Autowired private LigaService ligaService;
 	@Autowired private MercadoService mercadoService;
-	@Autowired private RodadaService rodadaService;
 	@Autowired private CampeonatoService campeonatoService;
 	@Autowired private TimeRodadaService timeRodadaService;
 	
 	@GetMapping("/atualiza")
 	public String atualiza(){
-		rodadaService.atualizaRodada();
-		mercadoService.atualiza();
-		ligaService.atualiza();
-		timeRodadaService.atualiza();
-		
+		//timeRodadaService.atualiza(mercadoService.getMercado().getRodada_atual());
 		return "forward:/";
 	}
 	
@@ -54,8 +43,7 @@ public class AtualizacaoController {
 			campeonatos.add(maisRico);
 			
 			campeonatoService.saveAll(campeonatos);
-		}
-		
+		}		
 		return "ok";
 	}
 

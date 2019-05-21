@@ -1,6 +1,8 @@
 package br.com.nextevolution.Liga.service;
 
 import java.net.UnknownHostException;
+import java.util.Comparator;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,18 @@ import br.com.nextevolution.Liga.model.Mercado;
 public class MercadoService extends Consulta{
 	@Autowired
 	private MercadoRepository mercadoRepository;
-	private Mercado mercado;
 	
 	public Mercado getMercado(){
-		return mercado;
+		Optional<Mercado> optionalMercado = mercadoRepository.findAll().stream()
+		.sorted(Comparator.comparing(Mercado::getRodada_atual).reversed())
+		.findFirst();
+		
+		if (optionalMercado.isPresent())
+			return optionalMercado.get();
+		
+		return null;
 	}
+	
 	@Transactional
 	public Mercado getMercado(int rodada) {
 		return mercadoRepository.getOne(rodada);
@@ -26,8 +35,7 @@ public class MercadoService extends Consulta{
 
 	public void atualiza() {
 		try {
-			this.mercado = consulta("/mercado/status").get(Mercado.class);
-			save(mercado);
+			save(consulta("/mercado/status").get(Mercado.class));
 		} catch (UnknownHostException e) {
 			System.out.println("Falha na comunicação com /mercado status");
 			e.printStackTrace();

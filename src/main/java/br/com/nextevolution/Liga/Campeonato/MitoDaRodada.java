@@ -1,65 +1,45 @@
 package br.com.nextevolution.Liga.Campeonato;
 
-import br.com.nextevolution.Liga.model.Campeonato;
-import br.com.nextevolution.Liga.model.Cartoleiro;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.nextevolution.Liga.model.Campeonato;
+import br.com.nextevolution.Liga.model.TimeRodada;
+import br.com.nextevolution.Liga.service.TimeRodadaService;
 
 public class MitoDaRodada extends Campeonato {
 	
-	private Cartoleiro mito;
-	private Cartoleiro viceMito;
-	private int mitagem;
-	private int viceMitagem;
+	@Autowired private TimeRodadaService timeRodadaService;
+	private TimeRodada mito;
+	private TimeRodada vicemito;
 	
-//	@Autowired
-//	private RodadaService rodadaService;
-	
-	public MitoDaRodada() {
+	public MitoDaRodada() {	
+		this.mito = timeRodadaService.getTimes().stream().sorted(
+				Comparator.comparing(TimeRodada::getPontos).reversed())
+				.findFirst().get();
+		
+		this.vicemito = timeRodadaService.getTimes().stream().sorted(
+				Comparator.comparing(TimeRodada::getPontos).reversed())
+				.skip(1)
+				.findFirst().get();
 	}
-	
-	public MitoDaRodada(String nome, int rodadaInicio, int rodadaFim, String descricao) {
-		super(nome, rodadaInicio, rodadaFim, descricao);
-	}
-	
-//	@Override
-//	public List<Cartoleiro> campeoes(List<Cartoleiro> cartoleiros) {
-//		
-//		for (int i = getInicio(); i < getFim(); i++) {
-//			Rodada rodada = rodadaService.getRodada(i);
-//			if( rodada.getFim().after(new Date()) && rodada.getId() < i ) {				
-//			
-//				for (Cartoleiro cartoleiro : cartoleiros) {
-//					if (mito.getPontos().getRodada() < cartoleiro.getPontos().getRodada()) {
-//						mito = cartoleiro;
-//						mitagem = i;
-//					}else {
-//						if (viceMito.getPontos().getRodada() < cartoleiro.getPontos().getRodada()) {
-//							viceMito = cartoleiro;
-//							viceMitagem = i;
-//						}
-//					}
-//				}
-//			}else {
-//				break;
-//			}
-//		}
-//		return Arrays.asList(mito,viceMito);
-//	}
-	
-	public Cartoleiro getMito() {
+
+	public TimeRodada getMito() {
 		return mito;
 	}
 	
-	public Cartoleiro getViceMito() {
-		return viceMito;
+	public TimeRodada getViceMito() {
+		return vicemito;
 	}
 	
-	public int getMitagem() {
-		return mitagem;
+	@Override
+	public List<TimeRodada> vencedores() {
+		List<TimeRodada> vencedores = new ArrayList<TimeRodada>();
+		vencedores.add(mito);
+		vencedores.add(vicemito);
+		return vencedores;
 	}
-	
-	public int getViceMitagem() {
-		return viceMitagem;
-	}
-	
 }

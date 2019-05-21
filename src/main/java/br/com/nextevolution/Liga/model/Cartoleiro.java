@@ -1,6 +1,5 @@
 package br.com.nextevolution.Liga.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -9,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -44,13 +42,15 @@ public class Cartoleiro implements Comparable<Cartoleiro>{
 	private Variacao variacao;
 	@OneToOne(mappedBy="time")
 	private Time time;
-	@OneToMany
-	private List<Pontos> pontuacao;
 	
-	public long getTime_id() {
+	private double premio;
+	private int gols;
+	private int assistencias;
+	
+	public long getId() {
 		return id;
 	}
-	public void setTime_id(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public int getClube_id() {
@@ -152,6 +152,26 @@ public class Cartoleiro implements Comparable<Cartoleiro>{
 		this.time = time;
 	}
 	
+	public double getPremio() {
+		return premio;
+	}
+	
+	public void setPremio(double premio) {
+		this.premio = premio;
+	}
+	
+	public int getGols() {
+		return gols;
+	}
+	public void setGols(int gols) {
+		this.gols = gols;
+	}
+	public int getAssistencias() {
+		return assistencias;
+	}
+	public void setAssistencias(int assistencias) {
+		this.assistencias = assistencias;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) return true;
@@ -166,22 +186,6 @@ public class Cartoleiro implements Comparable<Cartoleiro>{
 	}
 	public int compareTo(Cartoleiro outro) {
 		return Double.compare(this.pontos.getCampeonato(), outro.pontos.getCampeonato());
-	}
-	
-	public List<Pontos> getPontuacao() {
-		return pontuacao;
-	}
-	
-	public void setPontuacao(List<Pontos> pontuacao) {
-		this.pontuacao = pontuacao;
-	}
-	
-	public void addPontuacao(int rodada ,Double pontos){
-		Pontos p = new Pontos();
-		p.setId(rodada);
-		p.setRodada(rodada);
-		
-		pontuacao.add(p);
 	}
 	
 }
