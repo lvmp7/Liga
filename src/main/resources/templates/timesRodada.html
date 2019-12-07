@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="htttp://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masters BR</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{css/style.css}" />
+
+</head>
+
+<body>
+	<div th:replace="fragments/background"></div>
+
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+
+		<div class="jumbotron">
+			<table id="example" class="table table-hover table-dark" data-toggle="table" cellspacing="0">
+				<thead>
+					<tr>
+						<th scope="col" data-sortable="true">Time</th>
+						<th scope="col" data-sortable="true">Cartola</th>
+						<th scope="col" data-sortable="true">Rodada</th>
+						<th scope="col" data-sortable="true">Pontos</th>
+						<th scope="col" data-sortable="true">Gols Marcados</th>
+						<th scope="col" data-sortable="true">Assistencias</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${timesRodada != null}"
+						th:each="timeRodada :${timesRodada}">
+						<tr scope="row">
+
+							<td th:text="${timeRodada.time}">Mark</td>
+							<td th:text="${timeRodada.cartola}">Otto</td>
+							<td th:text="${timeRodada.rodada}">1</td>
+							<td	th:text="${#numbers.formatDecimal(timeRodada.pontos, 0, 'COMMA', 2, 'POINT')}">@mdo</td>
+							<td th:text="${timeRodada.gols}">0</td>
+							<td th:text="${timeRodada.assistencias}">0</td>
+
+						</tr>
+					</th:block>
+
+				</tbody>
+			</table>
+
+		</div>
+
+<script src="../static/jquery/jquery.min.js"
+	th:src="@{jquery/jquery.min.js}"></script>
+	
+<script src="../static/jquery/jquery.dataTables.min.js"
+	th:src="@{js/jquery.dataTables.min.js}"></script>
+		
+<script type="text/javascript" class="init">
+	$(document).ready(function() {
+		$('#example').DataTable();
+	});
+</script>
+
+		<div th:replace="fragments/footer ::footer"></div>
+	</div>
+
+
+</body>
+</html>

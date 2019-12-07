@@ -40,7 +40,7 @@ public class HomeController {
 	public String regulamento(Model model) {
 		return "regulamento";
 	}
-	
+
 	@ModelAttribute("mercado")
 	public Mercado mercado() {
 		return mercadoService.getMercado();

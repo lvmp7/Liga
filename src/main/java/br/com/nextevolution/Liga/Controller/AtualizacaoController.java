@@ -1,11 +1,17 @@
 package br.com.nextevolution.Liga.Controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import br.com.nextevolution.Liga.model.TimeRodada;
+import br.com.nextevolution.Liga.service.dto.TimeRodadaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.nextevolution.Liga.model.Campeonato;
@@ -45,6 +51,35 @@ public class AtualizacaoController {
 			campeonatoService.saveAll(campeonatos);
 		}		
 		return "ok";
+	}
+
+	@GetMapping("/timesRodada")
+	public String timesRodada(Model model) {
+		return "timesRodada";
+	}
+
+
+	@ModelAttribute("timesRodada")
+	public List<TimeRodadaDTO> listaTimesPorRadada(){
+		List<TimeRodadaDTO> times = new LinkedList<>();
+		List<TimeRodada> timesRodada = timeRodadaService.getTimes();
+
+		for (TimeRodada timeRodada: timesRodada) {
+			times.add(castTimeRodadaToDTO(timeRodada));
+		}
+		return times;
+	}
+
+	private TimeRodadaDTO castTimeRodadaToDTO(TimeRodada timeRodada){
+		TimeRodadaDTO time = new TimeRodadaDTO();
+		time.setTime(timeRodada.getCartoleiro().getNome());
+		time.setCartola(timeRodada.getCartoleiro().getNome_cartola());
+		time.setRodada(timeRodada.getRodada());
+		time.setPontos(timeRodada.getPontos());
+		time.setGols(timeRodada.getAtletas().stream().collect(Collectors.summingInt(a->a.getScout().getGol())));
+		time.setAssistencias(timeRodada.getAtletas().stream().collect(Collectors.summingInt(a->a.getScout().getAssistencia())));
+
+		return time;
 	}
 
 }
