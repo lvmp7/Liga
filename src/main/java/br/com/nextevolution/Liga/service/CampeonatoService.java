@@ -63,9 +63,7 @@ public class CampeonatoService{
 				.skip(1)
 				.findFirst().get();
 	}
-	
-	
-		
+			
 	public List<TimeRodada> vencedoresRodada(){
 		List<TimeRodada> vencedores = new ArrayList<TimeRodada>();
 		Mercado mercado = mercadoService.getMercado();

@@ -2,6 +2,7 @@ package br.com.nextevolution.Liga.service;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.core.GenericType;
@@ -22,7 +23,7 @@ public class TimeRodadaService extends Consulta{
 	@Autowired private CartoleiroService cartoleiroservice;
 	@Autowired private MercadoService mercadoService;
 	
-	private List<TimeRodada> times = new ArrayList<TimeRodada>();
+	private List<TimeRodada> times = new LinkedList<>();
 	
 	@Transactional
 	public void save(TimeRodada timeRodada) {
@@ -30,12 +31,12 @@ public class TimeRodadaService extends Consulta{
 	}
 	
 	public List<TimeRodada> getAll() {
-		//return timeRodadaRepository.findAll();
-		return times;
+		return timeRodadaRepository.findAll();
+		//return times;
 	}
 	
 	public List<TimeRodada> getTimes(){
-		if (!(times.size() > 0) ) {
+		if ( times.size() == 0)  {
 			atualizaTodasRodadas();
 		}
 		return times;
@@ -52,7 +53,7 @@ public class TimeRodadaService extends Consulta{
 	public void atualiza(int rodada) {	
 		for (Cartoleiro cartoleiro : cartoleiroservice.getCartoleiros()) {				
 			try {
-				TimeRodada time = consulta("/time/slug/"+cartoleiro.getSlug()+"/"+rodada).get(TimeRodada.class);
+				TimeRodada time = consulta("/time/id/"+cartoleiro.getId()+"/"+rodada).get(TimeRodada.class);
 				//save( time );
 				if(!times.contains(time))
 					times.add(time);
@@ -68,7 +69,7 @@ public class TimeRodadaService extends Consulta{
 		
 		for (Cartoleiro cartoleiro : cartoleiroservice.getCartoleiros()) {				
 			try {
-				TimeRodada time = consulta("/time/slug/"+cartoleiro.getSlug()+"/"+mercadoService.getMercado().getRodada_atual()).get(TimeRodada.class);
+				TimeRodada time = consulta("/time/id/"+cartoleiro.getId()+"/"+mercadoService.getMercado().getRodada_atual()).get(TimeRodada.class);
 				timesRodada.add(time);
 			} catch (UnknownHostException e) {
 				System.out.println("Falha na consulta ao TIMERODADA");
@@ -91,7 +92,7 @@ public class TimeRodadaService extends Consulta{
 		List<TimeRodada> timesRodada = new ArrayList<TimeRodada>();
 		for (Cartoleiro cartoleiro : cartoleiroservice.getCartoleiros()) {				
 			try {
-				TimeRodada time = consulta("/time/slug/"+cartoleiro.getSlug()+"/"+rodada).get(TimeRodada.class);
+				TimeRodada time = consulta("/time/id/"+cartoleiro.getId()+"/"+rodada).get(TimeRodada.class);
 				timesRodada.add(time);
 			} catch (UnknownHostException e) {
 				System.out.println("Falha na consulta ao TIMERODADA");
@@ -103,14 +104,16 @@ public class TimeRodadaService extends Consulta{
 	
 	
 	public void atualizaTodasRodadas() {
-		times = new ArrayList<TimeRodada>();
+		//times = new ArrayList<TimeRodada>();
+		times = new LinkedList<>();
 		for (int i = 1; i < mercadoService.getMercado().getRodada_atual() ; i++) {
 			for (Cartoleiro cartoleiro : cartoleiroservice.getCartoleiros()) {				
 				try {
-					TimeRodada time = consulta("/time/slug/"+cartoleiro.getSlug()+"/"+i).get(TimeRodada.class);
+					TimeRodada time = consulta("/time/id/"+cartoleiro.getId()+"/"+i).get(TimeRodada.class);
 					//save( time );
 					//times.addAll(getTimes(i));
-					times.add(time);
+					if ( time != null)
+						times.add(time);
 				} catch (UnknownHostException e) {
 					System.out.println("Falha na consulta ao TIMERODADA");
 					e.printStackTrace();

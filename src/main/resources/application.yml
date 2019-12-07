@@ -11,7 +11,7 @@ spring:
    show-sql : true
    dialect : org.hibernate.dialect.MySQL5InnoDBDialect
 server:
- port: 8080
+ port: 8090
  
 ---
 spring:
@@ -35,7 +35,7 @@ server :
 ---
 
 server:
- port: 8080
+ port: 8090
 spring:
  datasource :
   driver-class-name : org.mariadb.jdbc.Driver

@@ -22,7 +22,7 @@ public class AtualizacaoController {
 	
 	@GetMapping("/atualiza")
 	public String atualiza(){
-		//timeRodadaService.atualiza(mercadoService.getMercado().getRodada_atual());
+		timeRodadaService.atualiza(mercadoService.getMercado().getRodada_atual());
 		return "forward:/";
 	}
 	

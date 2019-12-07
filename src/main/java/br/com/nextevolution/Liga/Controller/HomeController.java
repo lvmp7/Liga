@@ -73,16 +73,31 @@ public class HomeController {
 	
 	@ModelAttribute("mito1")
 	public TimeRodada mito1() {
-		return timeRodadaService.getTimes().stream().sorted(
-				Comparator.comparing(TimeRodada::getPontos).reversed())
-				.findFirst().get();
+		List<TimeRodada> times = timeRodadaService.getTimes();
+		TimeRodada timeRodada = new TimeRodada();
+
+		if (times.size() > 0) {
+
+			timeRodada = times.stream().sorted(
+					Comparator.comparing(TimeRodada::getPontos).reversed())
+					.findFirst().get();
+		}
+
+		return timeRodada;
 	}
 	
 	@ModelAttribute("mito2")
 	public TimeRodada mito2() {
-		return timeRodadaService.getTimes().stream().sorted(
-				Comparator.comparing(TimeRodada::getPontos).reversed())
-				.skip(1)
-				.findFirst().get();
+		List<TimeRodada> times = timeRodadaService.getTimes();
+		TimeRodada timeRodada = new TimeRodada();
+
+		if (times.size() > 0) {
+			timeRodada = times.stream().sorted(
+					Comparator.comparing(TimeRodada::getPontos).reversed())
+					.skip(1)
+					.findFirst().get();
+		}
+
+		return timeRodada;
 	}
 }
